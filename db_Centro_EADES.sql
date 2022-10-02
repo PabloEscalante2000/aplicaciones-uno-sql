@@ -2272,7 +2272,6 @@ GO
 Select * From Tb_Profesional 
 go
 
-
 /****************************************************************************/
 /*************   ESPECIALIADAD         *****************************/
 /*******************************************************/
@@ -2281,15 +2280,117 @@ go
 
 Create Procedure [dbo].[usp_InsertarEspecialidad]
 @vId_Espec int,
-@vNom_Espec varchar (50),
+@vNom_Espec varchar(50),
 @vDes_Espec varchar(50)
 as
---Insertamos un nuevo usuario
-Insert into Tb_Usuario values 
-(@Login_Usuario , @Pass_Usuario , @Niv_Usuario , @Est_Usuario , GETDATE(),@Usu_Registro )
+--Insertamos una nueva especialidad
+Insert into Tb_Especialidad values 
+(@vId_Espec , @vNom_Espec, @vDes_Espec)
+GO
+
+--EXEC [usp_InsertarEspecialidad]  4,'Terapeuta Adulto','Especialista en el adulto mayor' 
+--go
+
+--Select * From Tb_Especialidad
+--go
+
+
+/****************************************************************************/
+/*************   APODERADO         *****************************/
+/*******************************************************/
+
+/* usp_InsertarApoderado */
+Create Procedure [dbo].[usp_InsertarApoderado]
+@vId_Ubigeo char(6),
+@vNom varchar(25),
+@vApe varchar(25),
+@vDir varchar(50),
+@vDni char(8),
+@vTel varchar(10),
+@vUsu_Registro varchar(20),
+@vEst integer
+As
+declare @vcod char(4)
+declare @vcont int
+set @vcont=(Select count(*) from Tb_Apoderado)
+if @vcont=0
+		set @vcod = 'A001'
+else
+--Se puede usar tambien substring para tomar desde la segunda
+--posicion tres caracteres
+Set @vcod=(Select 'A'+ right(max(substring(Cod_apo,2,3)+1001),3)
+from Tb_Apoderado)
+
+insert into Tb_Apoderado values
+(@vcod,@vId_Ubigeo,@vNom,@vApe,@vDir,@vDni,@vTel,GETDATE(),@vUsu_Registro,NULL,NULL,@vEst)
+go
+
+--EXEC [usp_InsertarApoderado] '140104','Fabiola','De las Casas','Calle Los girasoles 333','50436252','999333777','Paola Gomes',1
+--go
+
+--Select * From Tb_Apoderado
+--go
+
+/****************************************************************************/
+/*************   PACIENTE         *****************************/
+/*******************************************************/
+
+/* usp_InsertarPaciente */
+
+CREATE PROCEDURE [dbo].[usp_InsertarPaciente]
+@vCod_apo char(4),
+@vId_Ubigeo char(6),
+@vNom varchar(25),
+@vApe varchar(25),
+@vDir varchar(50),
+@vDni char(8),
+@vTel varchar(10),
+@vUsu_Registro varchar(20),
+@vEst int
+As
+declare @vcod char(4)
+declare @vcont int
+set @vcont=(Select count(*) from Tb_Paciente)
+if @vcont=0
+		set @vcod = 'P001'
+else
+--Se puede usar tambien substring para tomar desde la segunda
+--posicion tres caracteres
+Set @vcod=(Select 'P' + right(max(substring(Cod_pac,2,3)+1001),3)
+		from Tb_Paciente)
+Insert into Tb_Paciente values
+(@vcod,@vCod_apo,@vId_Ubigeo,@vNom,@vApe,@vDir,@vDni,@vTel,GETDATE(),@vUsu_Registro,null,null,@vEst)
+go
+
+
+--EXEC [usp_InsertarPaciente] 'A003','140103','Ana Patricia','Riquelme','Calle Inclan 197','70736267','999888723','Ximena Diaz',1
+--go
+
+--Select * From Tb_Paciente
+--go
+
+/****************************************************************************/
+/*************   HORARIO DE SESIONES         *****************************/
+/*******************************************************/
+
+/* usp_InsertarHorarioSesiones */
+CREATE PROCEDURE [dbo].[usp_InsertarHorarioSesiones]
+@vCod_Hora_Ses int,
+@vCod_Pro char(3),
+@vDes_dia varchar(50),
+@vEst int
+as
+--Insertamos un nuevo horario de sesiones
+Insert into Tb_Horario_Sesiones values 
+(@vCod_Hora_Ses , @vCod_Pro, @vDes_dia,@vEst)
 GO
 
 
-//comentario rhodas
+--EXEC [usp_InsertarHorarioSesiones] 5,'P03','Lunes , Miercoles , Viernes',1
+--go
 
-//segundo comentario 18:39
+--Select * From Tb_Horario_Sesiones
+--go
+
+
+
