@@ -2413,5 +2413,262 @@ GO
 --Select * From Tb_Horario_Sesiones
 --go
 
+--2022/10/02
+/****************************************************************************/
+/*************   usp_ActualizarUsuario        *****************************/
+/*******************************************************/
 
+Create Procedure [dbo].[usp_ActualizarUsuario]
+@vLogin varchar(20),
+@vPass varchar(20),
+@vNiv int,
+@vEst int
+As
+Update Tb_Usuario set Login_Usuario=@vLogin,Pass_Usuario=@vPass,
+Niv_Usuario=@vNiv, Est_Usuario=@vEst
+where Login_Usuario=@vLogin
+go
+
+
+--EXEC [usp_ActualizarUsuario] 'Carola Gomes','gmopass',2,1
+--go
+
+
+--Select * From Tb_Usuario
+--go
+
+/****************************************************************************/
+/*************   usp_ActualizarProfesional*****************************/
+/*******************************************************/
+Create Procedure [dbo].[usp_ActualizarProfesional]
+@vcod char(3),
+@vId_Espec int,
+@vNom varchar(25),
+@vApe varchar(25),
+@vSuel money,
+@vDni char(8),
+@vEmail varchar(50),
+@vUsu_Ult_Mod varchar(20),
+@vEst int
+As
+Update Tb_Profesional set Id_Espec=@vId_Espec,Nom_pro=@vNom,
+Ape_pro=@vApe,Sue_pro=@vSuel,Dni_pro=@vDni,Email_pro=@vDni,
+Fech_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod,Est_pro=@vEst
+where Cod_Pro=@vcod
+go
+
+
+--EXEC [usp_ActualizarProfesional] 'P04',3,'Rodrigo Marcelo','Palacio Molinas',3000,'40736245','rodrigo777@gmail','Paola Gomes',1
+--go
+
+
+--Select * From Tb_Profesional
+--go
+
+
+/****************************************************************************/
+/*************   usp_ActualizarEspecialidad*****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ActualizarEspecialidad]
+@vcod int,
+@vNom varchar(50),
+@vDes varchar(50)
+As
+Update Tb_Especialidad set Nom_Espec=@vNom,Des_Espec=@vDes
+where Id_Espec=@vcod
+Go
+
+
+--EXEC [usp_ActualizarEspecialidad] 4,'Psicologa','Especialista en problemas de pareja.'
+--go
+
+
+--Select * From Tb_Especialidad
+--go
+
+
+/****************************************************************************/
+/*************   usp_ActualizarApoderado*****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ActualizarApoderado]
+@vcod char(4),
+@vId_Ubigeo char(6),
+@vNom varchar(25),
+@vApe varchar(25),
+@vDir varchar(50),
+@vDni char(8),
+@vTel varchar(10),
+@vUsu_Ult_Mod varchar(20),
+@vEst int
+As
+Update Tb_Apoderado set Id_Ubigeo=@vId_Ubigeo,Nom_apo=@vNom,Ape_apo=@vApe,
+Dir_apo=@vDir,Dni_apo=@vDni,Tel_pac=@vTel,Fech_Ult_Mod=getdate(),
+Usu_Ult_Mod=@vUsu_Ult_Mod,Est_apo=@vEst
+where Cod_apo=@vcod
+Go
+
+
+--EXEC [usp_ActualizarApoderado] 'A004','140101','Fabiola','Farias De las Casas','Calle Los girasoles 123','50433278','999333999','Paola Gomes',1
+--go
+
+
+--Select * From Tb_Apoderado
+--go
+
+
+/****************************************************************************/
+/*************   usp_ActualizarPaciente*****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ActualizarPaciente]
+@vcod varchar(4),
+@vCod_apo char(4),
+@vId_Ubigeo char(6),
+@vNom varchar(25),
+@vApe varchar(25),
+@vDir varchar(50),
+@vDni char(8),
+@vTel varchar(10),
+@vUsu_Ult_Mod varchar(20),
+@vEst int
+As
+Update Tb_Paciente set Cod_apo=@vCod_apo, Id_Ubigeo=@vId_Ubigeo,Nom_pac=@vNom,Ape_pac=@vApe,
+Dir_pac=@vDir,Dni_pac=@vDni,Tel_pac=@vTel,Fech_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod,Est_pac=@vEst
+where Cod_pac=@vcod
+Go
+
+
+--EXEC [usp_ActualizarPaciente] 'P004','A002','140103','Ana Patricia','Zanabria Riquelme','Calle Los girasoles 223','60433278','999037299','Paola Gomes',1
+--go
+
+
+--Select * From Tb_Paciente
+--go
+
+/****************************************************************************/
+/*************   usp_ActualizarHorarioSesiones*****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ActualizarHorarioSesiones]
+@vcod int,
+@vCod_pro char(3),
+@vDes varchar(50),
+@vEst int
+As
+Update Tb_Horario_Sesiones set Cod_Pro=@vCod_pro,Descrip_dia=@vDes,Est_Hor_Ses=@vEst
+where Cod_Horario_Ses=@vcod
+Go
+
+--use [Centro-EADES]
+
+
+--EXEC [usp_ActualizarHorarioSesiones] 5 ,'P04','Lunes , Viernes',1
+--go
+
+
+--Select * From Tb_Horario_Sesiones
+--go
+
+
+
+/****************************************************************************/
+/*************   usp_ActualizarDetalleSesiones*****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ActualizarDetalleSesiones]
+@vcod_pac varchar(4),
+@vcod_hor_ses integer,
+@vhor_ini varchar(10),
+@vhor_fin varchar(10),
+@vUsu_Ult_Mod varchar(20),
+@vEst integer
+As
+Update Tb_Detalle_Sesiones set Hora_Ini=@vhor_ini,Hora_Fin=@vhor_fin ,
+Fec_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod,Est_Ses_Asig=@vEst
+where Cod_pac=@vcod_pac and Cod_Horario_Ses=@vcod_hor_ses
+Go
+
+
+--use [Centro-EADES]
+
+
+--EXEC [usp_ActualizarDetalleSesiones] 'P003',3,'5:00pm','7:00pm','Ximena Dias',1 
+--go
+
+
+--Select * From Tb_Detalle_Sesiones
+--go
+
+/****************************************************************************/
+/*************   usp_ActualizarReservacionSesion*****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ActualizarReservacionSesion]
+@vcod_apo varchar(4),
+@vcod_hor_ses integer,
+@vFecha_Reser datetime,
+@vEst integer,
+@vUsu_Ult_Mod varchar(20)
+As
+Update Tb_Reservacion_Sesion set Fecha_Reserv=@vFecha_Reser, Est_Reserv=@vEst,
+Fech_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod
+where Cod_apo=@vcod_apo and Cod_Horario_Ses=@vcod_hor_ses
+Go
+
+
+--EXEC [usp_ActualizarReservacionSesion] 'A003','3','20190820',1,'Ximena Diaz' 
+--go
+
+
+--Select * From Tb_Reservacion_Sesion
+--go
+
+/****************************************************************************/
+/*************   usp_InsertarDetalleSesiones*****************************/
+/*******************************************************/
+
+CREATE PROCEDURE [dbo].[usp_InsertarDetalleSesiones]
+@vcod_pac varchar(4),
+@vcod_Hor_Ses int,
+@vHor_ini varchar(10),
+@vHor_fin varchar(10),
+@vUsu_Reg varchar(20),
+@vEst int
+as
+--Insertamos un nuevo detalle de sesion
+Insert into Tb_Detalle_Sesiones values 
+(@vcod_pac , @vcod_Hor_Ses, @vHor_ini,@vHor_fin,getdate(),@vUsu_Reg,null,null,@vEst)
+GO
+
+
+--EXEC [usp_InsertarDetalleSesiones] 'P004',4,'7:00 am','9:00 am','Paola Gomes',1 
+--go
+
+--Select * From Tb_Detalle_Sesiones
+--go
+
+/****************************************************************************/
+/*************   usp_InsertarReservacionSesion*****************************/
+/*******************************************************/
+
+CREATE PROCEDURE [dbo].[usp_InsertarReservacionSesion]
+@vcod_apo char(4),
+@vcod_Hor_Ses int,
+@vFech_Res datetime,
+@vEst int,
+@vUsu_Reg varchar(20)
+as
+--Insertamos una nueva Reservacion de sesion
+Insert into Tb_Reservacion_Sesion values 
+(@vcod_apo,@vcod_Hor_Ses,@vFech_Res,@vEst,getdate(),@vUsu_Reg,null,null)
+GO
+
+
+--EXEC [usp_InsertarReservacionSesion] 'A003',1,'20190711',0,'Paola Gomes' 
+--go
+
+--Select * From Tb_Reservacion_Sesion
+--go
 
