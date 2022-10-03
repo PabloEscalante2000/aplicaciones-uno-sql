@@ -1,6 +1,14 @@
 USE [master]
 GO
 
+--Adicion de borrado de base de datos
+DROP DATABASE [Centro-EADES]
+go
+
+--Usar centro EADES
+USE [Centro-EADES]
+GO
+
 /*CREACION DE BASE DE DATOS CLINICA EADES*/
 
 Create Database [Centro-EADES]
@@ -285,22 +293,22 @@ Insert Tb_Usuario Values (N'Admin', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:0
 -- cambios al insert de usuario
 
 Insert Tb_Usuario Values (N'Lucas Lope', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Santiago Queirolo', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Alisson Ugarte', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Jesus Maestro', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Manuel Arturo', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Nicolle Watterson', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Camila Navarrete', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Santiago Queirolo', N'pass456', 2 , 1, CAST(N'2020-08-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Alisson Ugarte', N'S0p0rt3', 1 , 1, CAST(N'2022-01-15T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Jesus Maestro', N'pass123', 2 , 1, CAST(N'2022-03-03T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Manuel Arturo', N'pass456', 2 , 1, CAST(N'2021-09-09T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Nicolle Watterson', N'S0p0rt3', 1 , 1, CAST(N'2002-06-03T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Camila Navarrete', N'pass123', 2 , 1, CAST(N'2019-09-18T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'Hanna Montana', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'Candace Ramirez', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'Elver Galarga', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'José Olaya', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'Carlos Ochoa', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Mauricio Babilonia', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Remedios Buen Día', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Úrsula Iguarán', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Paola Sifuentes', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Mauricio Babilonia', N'pass123', 2 , 1, CAST(N'2020-05-05T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Remedios Buen Día', N'pass456', 2 , 1, CAST(N'2022-09-06T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Úrsula Iguarán', N'S0p0rt3', 1 , 1, CAST(N'2022-05-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Pietro Crespi', N'pass123', 2 , 1, CAST(N'2022-06-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'José Ramirez', N'pass456', 2 , 1, CAST(N'2022-07-19T00:00:00.000' AS DateTime), N'Admin')
 
 /*INSERT TABLE UBIGEO*/
 
@@ -2174,15 +2182,49 @@ Select * From Tb_Especialidad
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (1,'Psicologo','Especialista patrones anormales de comportamiento')
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (2,'Psiquiatra','Medico especialista patrones anormales mentales.')
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (3,'Terapeuta Infantil','Especialista comportamiento infantil')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (4,'Psicologo Organizacional','Especialista en le manejo de organizaciones')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (5,'Psicoanalista','Especialista en el psicoanálsis')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (6,'Psicólogo Forense','Especialista en casos criminales')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (7,'Psicologo Educativo','Especialista en organizaciones educativas')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (8,'Psicologo Lógico-Conductual','Especialista en el manejo de las conductas')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (9,'Psicoanalista clínico','psicoterapueta con competencias psiquiátricas')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (10,'Psicologo Deportivo','Especialista en el maenejo de deportistas')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (11,'Psicólogo experimentales','psicólogs dedicados a la investigación')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (12,'Terapeuta Infantil','Especialista comportamiento infantil')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (13,'Psicologos del desarrollo','en los jóvenes')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (14,'Neuropsicólogos','Especialistas en neurología')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (15,'Psicólogos sociales','Especialista ')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (16,'Sexólogos','Especialista en el ámbito sexual de los pacientes')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (17,'psicogerontólogos','Especialistas en la vejez')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (18,'Psicólogo de marketing','Especialistas en el marketing')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (19,'Psicologo General','psicólogo sin ninguna especialidad')
+Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (20,'Practicante','Estudiante')
 GO
 
 /*INSERT PROFESIONAL*/
 
 Select * From Tb_Profesional
 
-INSERT [Tb_Profesional] VALUES (N'P01', 1 , N'Juan Ramon', N'Sequeiros Ramos', 2200.0000, CAST(N'2010-11-15T00:00:00.000' AS DateTime), N'40736223', N'jramonsq56@gmail.com', CAST(N'2013-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
-INSERT [Tb_Profesional] VALUES (N'P02', 2 , N'Maria Mercedes', N'Olivares Mejia', 4000.0000, CAST(N'2011-11-15T00:00:00.000' AS DateTime), N'40936223', N'marita69@gmail.com', CAST(N'2013-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
-INSERT [Tb_Profesional] VALUES (N'P03', 3 , N'Richard', N'Rayme Cardenas ', 1800.0000, CAST(N'2012-11-15T00:00:00.000' AS DateTime), N'77736223', N'handstone@gmail.com', CAST(N'2013-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P01', 1 , N'Juan Ramon', N'Sequeiros Ramos', 2200.0000, CAST(N'2010-11-15T00:00:00.000' AS DateTime), N'40736223', N'jramonsq56@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P02', 2 , N'Maria Mercedes', N'Olivares Mejia', 4000.0000, CAST(N'2011-11-15T00:00:00.000' AS DateTime), N'78915468', N'marita69@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P03', 3 , N'Richard', N'Rayme Cardenas ', 1800.0000, CAST(N'2012-11-15T00:00:00.000' AS DateTime), N'77736223', N'handstone@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P04', 4 , N'Samuel', N'Cisneros', 2200.0000, CAST(N'2011-12-15T00:00:00.000' AS DateTime), N'72598432', N'papasyhelado@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P05', 5 , N'Richards', N'Olivares Zafra', 4000.0000, CAST(N'2010-01-05T00:00:00.000' AS DateTime), N'77895433', N'masmas@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P06', 5 , N'Ronaldo', N'Winston ', 1800.0000, CAST(N'2010-05-19T00:00:00.000' AS DateTime), N'99424999', N'psicology55@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P07', 5 , N'Juan Ramon', N'Sequeiros Ramos', 2200.0000, CAST(N'2013-12-15T00:00:00.000' AS DateTime), N'79168466', N'freudfan666@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P08', 6 , N'Scout', N'Lovecraft', 4000.0000, CAST(N'2010-10-26T00:00:00.000' AS DateTime), N'79855556', N'maxtone69@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P09', 6 , N'Celestia', N'Royalness ', 1800.0000, CAST(N'2013-10-18T00:00:00.000' AS DateTime), N'12111568', N'coconut55@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P10', 10 , N'Luna', N'Shining', 2200.0000, CAST(N'2014-11-17T00:00:00.000' AS DateTime), N'50400253', N'sodafocuailt@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P11', 12 , N'Maria', N'Bastidas', 4000.0000, CAST(N'2011-08-08T00:00:00.000' AS DateTime), N'05400269', N'facoultfan99@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P12', 16 , N'Felipe', N'Cuarto ', 1800.0000, CAST(N'2012-09-10T00:00:00.000' AS DateTime), N'78922188', N'squirrel89@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P13', 19 , N'Ramón', N'Cortéz', 2200.0000, CAST(N'2011-01-05T00:00:00.000' AS DateTime), N'78977448', N'ggletsgo64@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P14', 2 , N'Linda', N'Ochoa', 4000.0000, CAST(N'2009-10-05T00:00:00.000' AS DateTime), N'08479699', N'marcelo88@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P15', 6 , N'Nicolle', N'Wattersone ', 1800.0000, CAST(N'2012-01-01T00:00:00.000' AS DateTime), N'77890140', N'doometernal99@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P16', 10 , N'Homero', N'Simpsons', 2200.0000, CAST(N'2011-01-06T00:00:00.000' AS DateTime), N'04998850', N'feli8989@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P17', 2 , N'Luz', N'Quispe', 4000.0000, CAST(N'2011-11-15T00:00:00.000' AS DateTime), N'08744033', N'mkultra231@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P18', 6 , N'Candice', N'Balls ', 1800.0000, CAST(N'2012-11-15T00:00:00.000' AS DateTime), N'55300069', N'totheend66@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P19', 10 , N'Lenin', N'Santos', 2200.0000, CAST(N'2010-11-15T00:00:00.000' AS DateTime), N'74920778', N'lele89@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
+INSERT [Tb_Profesional] VALUES (N'P20', 20 , N'Federico', N'Oliveros', 500.0000, CAST(N'2011-11-15T00:00:00.000' AS DateTime), N'08963472', N'federico8989@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
 Go
 
 /*INSERT APODERADO*/
