@@ -4,21 +4,22 @@ GO
 /*CREACION DE BASE DE DATOS CLINICA EADES*/
 
 Create Database [Centro-EADES]
-Containment = None
+GO
+/*Containment = None
 On Primary
 (	Name = N'Centro-EADES', 
-	Filename = N'D:\ISIL CARRERA CONTINUACION\CICLO 2022-2\1.-DESARROLLO DE APLICACIONES I\Base de Datos Info\Centro-EADES.mdf' , 
+	Filename = N'C:\Users\USUARIO\CURSOS_DE_PROGRAMACION\Curso_Aplicaciones_I\BBDD\Centro-EADES.mdf' , 
 	Size = 10240KB ,
 	Maxsize = Unlimited, 
 	Filegrowth = 1024KB)
 Log on
 (	Name = N'Centro-EADES_log', 
-	Filename = N'D:\ISIL CARRERA CONTINUACION\CICLO 2022-2\1.-DESARROLLO DE APLICACIONES I\Base de Datos Info\Centro-EADES_log.ldf' , 
+	Filename = N'C:\Users\USUARIO\CURSOS_DE_PROGRAMACION\Curso_Aplicaciones_I\BBDD\Centro-EADES_log.ldf' , 
 	Size = 6912KB ,
 	Maxsize = 2048GB, 
 	Filegrowth = 10%)
 With Catalog_Collation = Database_Default
-Go
+Go*/
 
 use [Centro-EADES]
 go
@@ -280,6 +281,26 @@ Select * From Tb_Usuario
 Insert Tb_Usuario Values (N'Ximena Diaz', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'Paola Sifuentes', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'Admin', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+
+-- cambios al insert de usuario
+
+Insert Tb_Usuario Values (N'Lucas Lope', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Santiago Queirolo', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Alisson Ugarte', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Jesus Maestro', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Manuel Arturo', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Nicolle Watterson', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Camila Navarrete', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Hanna Montana', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Candace Ramirez', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Elver Galarga', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'José Olaya', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Carlos Ochoa', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Mauricio Babilonia', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Remedios Buen Día', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Úrsula Iguarán', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'Paola Sifuentes', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
 
 /*INSERT TABLE UBIGEO*/
 
