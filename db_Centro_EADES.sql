@@ -70,6 +70,7 @@ go
 /*CREAMOS LA TABLA Tb_Usuario*/
 CREATE TABLE Tb_Usuario
 (
+	Cod_Usu [nchar](3) NOT NULL,
 	Login_Usuario [varchar](20) NOT NULL,
 	Pass_Usuario [varchar](20) NOT NULL,
 	Niv_Usuario [int] NULL,
@@ -213,7 +214,7 @@ alter table Tb_Apoderado drop constraint PK_Apoderado
 
 /*PRIMARY KEYS*/
 Alter Table Tb_Apoderado Add Constraint PK_Apoderado Primary Key (Cod_apo) 
-Alter Table Tb_Usuario Add Constraint PK_Login_Usuario Primary Key (Login_Usuario)
+Alter Table Tb_Usuario Add Constraint PK_Cod_Usu Primary Key (Cod_Usu)
 Alter Table Tb_Profesional Add Constraint PK_Cod_Pro Primary Key (Cod_Pro) 
 Alter Table Tb_Especialidad Add Constraint PK_Id_Espec Primary Key (Id_Espec) 
 Alter Table Tb_Horario_Sesiones Add Constraint PK_Cod_Hor_Ses Primary Key (Cod_Horario_Ses) 
@@ -233,7 +234,7 @@ go
 
 /*TABLA RESERVACION SESION*/
 
-Alter Table Tb_Reservacion_Sesion With Check Add Constraint FK_ReservacionSesion_Apoderado Foreign Key (Cod_apo) References Tb_Apoderado (Cod_apo)
+Alter Table Tb_Reservacion_Sesion With Check Add Constraint FK_ReservacionSesion_Apoderado Foreign Key (Cod_apo) References Tb_Apoderado (Cod_apo) On Delete Cascade
 Alter Table Tb_Reservacion_Sesion With Check Add Constraint FK_ReservacionSesion_HorarioSesiones Foreign Key (Cod_Horario_Ses) References Tb_Horario_Sesiones (Cod_Horario_Ses)
 Alter Table Tb_Reservacion_Sesion Add Constraint Def_Fec_Reg_Reserv_Ses Default (getdate()) For Fec_Reg 
 go
@@ -257,7 +258,7 @@ Alter Table Tb_Profesional Add Constraint Def_Pro_Fech_Registro Default (getdate
 
 /*TABLA HORARIO SESIONES*/
 
-Alter Table Tb_Horario_Sesiones With Check Add Constraint FK_Horario_Sesiones_Profesional Foreign Key (Cod_Pro) References Tb_Profesional (Cod_Pro)
+Alter Table Tb_Horario_Sesiones With Check Add Constraint FK_Horario_Sesiones_Profesional Foreign Key (Cod_Pro) References Tb_Profesional (Cod_Pro) On Delete Cascade
 
 /*TABLA UBIGEO*/
 
@@ -266,7 +267,7 @@ Alter Table Tb_Ubigeo With Check Add Constraint FK_Ubigeo_Profesional Foreign Ke
 /*TABLA DETALLES SESIONES*/
 
 Alter Table Tb_Detalle_Sesiones With Check Add Constraint FK_Detalles_Sesiones_Horario_Sesiones Foreign Key (Cod_Horario_Ses) References Tb_Horario_Sesiones (Cod_Horario_Ses)
-Alter Table Tb_Detalle_Sesiones With Check Add Constraint FK_Detalles_Sesiones_Paciente Foreign Key (Cod_pac) References Tb_Paciente (Cod_pac)
+Alter Table Tb_Detalle_Sesiones With Check Add Constraint FK_Detalles_Sesiones_Paciente Foreign Key (Cod_pac) References Tb_Paciente (Cod_pac) On Delete Cascade
 Alter Table Tb_Detalle_Sesiones With Check Add Constraint FK_Detall_Sess_Hor_Sess_Update Foreign Key (Cod_Horario_Ses) References Tb_Horario_Sesiones (Cod_Horario_Ses) On Update Cascade
 Alter Table Tb_Detalle_Sesiones Add Constraint Def_Detalle_Sesiones_Fec_reg Default (getdate()) For Fec_reg
 
@@ -286,9 +287,9 @@ Alter Table Tb_Paciente Add Constraint Def_Pac_Fec_Reg Default (getdate()) For F
 
 Select * From Tb_Usuario
 
-Insert Tb_Usuario Values (N'Ximena Diaz', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Paola Sifuentes', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Admin', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U01', N'Ximena Diaz', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U02',N'Paola Sifuentes', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U03',N'Admin', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
 
 -- cambios al insert de usuario
 
@@ -2289,15 +2290,23 @@ Create Procedure [dbo].[usp_InsertarUsuario]
 @Est_Usuario int,
 @Usu_Registro varchar(20)
 as
+declare @vcod char(3)
+declare @vcont int
+set @vcont=(Select count(*) from Tb_Usuario)
+if @vcont=0
+		set @vcod='U01'
+else
+		set @vcod=(Select 'U'+Right(Max(Right(Cod_Usu,2)+101),2)
+	From Tb_Usuario)
 --Insertamos un nuevo usuario
 Insert into Tb_Usuario values 
-(@Login_Usuario , @Pass_Usuario , @Niv_Usuario , @Est_Usuario , GETDATE(),@Usu_Registro )
+(@vcod, @Login_Usuario , @Pass_Usuario , @Niv_Usuario , @Est_Usuario , GETDATE(),@Usu_Registro )
 GO
 
 --EXEC [usp_InsertarUsuario] 'Carola Gomes','michifuz',2,1,'Admin'
 go
 
-SELECT * FROM Tb_Usuario
+--SELECT * FROM Tb_Usuario
 GO
 
 /****************************************************************************/
@@ -2461,6 +2470,7 @@ GO
 /*******************************************************/
 
 Create Procedure [dbo].[usp_ActualizarUsuario]
+@vcod char(3),
 @vLogin varchar(20),
 @vPass varchar(20),
 @vNiv int,
@@ -2468,7 +2478,7 @@ Create Procedure [dbo].[usp_ActualizarUsuario]
 As
 Update Tb_Usuario set Login_Usuario=@vLogin,Pass_Usuario=@vPass,
 Niv_Usuario=@vNiv, Est_Usuario=@vEst
-where Login_Usuario=@vLogin
+where Cod_Usu=@vcod
 go
 
 
@@ -2714,3 +2724,155 @@ GO
 --Select * From Tb_Reservacion_Sesion
 --go
 
+--04/10/2022
+/****************************************************************************/
+/*************   usp_EliminarUsuario  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarUsuario]
+@vcod char(3)
+As
+delete from Tb_Usuario where
+Cod_Usu=@vcod
+go
+
+
+--EXEC [usp_EliminarUsuario] 'U04' 
+--go
+
+--Select * From Tb_Usuario
+--go
+
+
+/****************************************************************************/
+/*************   usp_EliminarProfesional  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarProfesional]
+@vcod char(3)
+As
+delete from Tb_Profesional where
+Cod_Pro=@vcod
+go
+
+
+------EXEC [usp_EliminarProfesional] 'P03' 
+------go
+
+------Select * From Tb_Profesional
+------go
+
+/****************************************************************************/
+/*************   usp_EliminarEspecialidad  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarEspecialidad]
+@vcod int
+As
+delete from Tb_Especialidad where
+Id_Espec=@vcod
+go
+
+
+--EXEC [usp_EliminarEspecialidad] 3
+--go
+
+--Select * From Tb_Especialidad
+--go
+
+
+/****************************************************************************/
+/*************   usp_EliminarPaciente  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarPaciente]
+@vcod varchar(4)
+As
+delete from Tb_Paciente where
+Cod_pac=@vcod
+go
+
+
+----EXEC [usp_EliminarPaciente] 'P003' 
+----go
+
+----Select * From Tb_Paciente
+----go
+
+
+/****************************************************************************/
+/*************   usp_EliminarApoderado  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarApoderado]
+@vcod char(4)
+As
+delete from Tb_Apoderado where
+Cod_apo=@vcod
+go
+
+
+----EXEC [usp_EliminarApoderado] 'A003' 
+----go
+
+----Select * From Tb_Apoderado
+----go
+
+
+/****************************************************************************/
+/*************   usp_EliminarHorarioSesiones  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarHorarioSesiones]
+@vcod int
+As
+delete from Tb_Horario_Sesiones where
+Cod_Horario_Ses=@vcod
+go
+
+
+----EXEC [usp_EliminarHorarioSesiones] 4 
+----go
+
+----Select * From Tb_Horario_Sesiones
+----go
+
+
+/****************************************************************************/
+/*************   usp_EliminarDetalleSesiones  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarDetalleSesiones]
+@vcod_pac varchar(4),
+@vcod_ses int
+As
+delete from Tb_Detalle_Sesiones where
+Cod_pac=@vcod_pac And Cod_Horario_Ses=@vcod_ses
+go
+
+
+----EXEC [usp_EliminarDetalleSesiones] 'P002',2
+----go
+
+----Select * From Tb_Detalle_Sesiones
+----go
+
+
+/****************************************************************************/
+/*************   usp_EliminarDetalleSesiones  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_EliminarReservacionSesion]
+@vcod_apo char(4),
+@vcod_hor_ses int
+As
+delete from Tb_Reservacion_Sesion where
+Cod_apo=@vcod_apo And Cod_Horario_Ses=@vcod_hor_ses
+go
+
+
+----EXEC [usp_EliminarReservacionSesion] 'A002',2
+----go
+
+----Select * From Tb_Reservacion_Sesion
+----go
