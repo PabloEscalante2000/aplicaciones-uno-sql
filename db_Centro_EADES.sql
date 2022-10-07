@@ -2859,7 +2859,7 @@ go
 
 
 /****************************************************************************/
-/*************   usp_EliminarDetalleSesiones  *****************************/
+/*************   usp_EliminarReservacionSesion  *****************************/
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarReservacionSesion]
@@ -2876,3 +2876,247 @@ go
 
 ----Select * From Tb_Reservacion_Sesion
 ----go
+
+--04/10/2022
+
+/****************************************************************************/
+/*************   vw_VistaUsuarios  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaUsuarios]
+As
+Select U.Cod_Usu,U.Login_Usuario,U.Pass_Usuario,U.Niv_Usuario,
+Case U.Niv_Usuario
+	when 1 then 'Administrador de Sistema'
+	when 2 then 'Recepcionista'
+end as Nivel,
+U.Est_Usuario,
+Case U.Est_Usuario
+	when 0 then 'Inactivo'
+	when 1 then 'Activo'
+end as Estado,
+U.Fec_Registro,
+U.Usu_Registro
+From Tb_Usuario as U
+go
+
+/****************************************************************************/
+/*************   vw_VistaProfesional  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaProfesional]
+As
+Select P.Cod_Pro,E.Id_Espec,P.Nom_pro,P.Ape_pro,
+P.Sue_pro,P.Fech_ing,DATEDIFF(D,P.Fech_ing,GETDATE()) /365 AS Antiguedad_Años,P.Dni_pro,
+P.Email_pro,P.Fech_Registro,P.Usu_Registro,P.Fech_Ult_Mod,P.Usu_Ult_Mod,P.Est_pro,
+Case P.Est_pro
+	when 0 then 'Inactivo'
+	when 1 then 'Activo'
+end as Estado
+From Tb_Especialidad E inner join Tb_Profesional P  on P.Id_Espec=E.Id_Espec 
+go
+
+/****************************************************************************/
+/*************   vw_VistaEspecialidadProfesional  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaEspecialidadProfesional]
+As
+Select E.Id_Espec,P.Nom_pro,P.Ape_pro,E.Nom_Espec,E.Des_Espec
+From Tb_Especialidad E inner join Tb_Profesional P  on P.Id_Espec=E.Id_Espec 
+go
+
+
+/****************************************************************************/
+/*************   vw_VistaUbigeo  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaUbigeo]
+As
+Select row_number() 
+over(Order by IdDepa,IdProv, IdDist) As Id, Id_Ubigeo, IdDepa , IdProv,IdDist,Departamento,Provincia,Distrito,IsNull (Cod_Pro,'---') As Cod_pro
+From Tb_Ubigeo 
+go
+
+/****************************************************************************/
+/*************   vw_VistaApoderado  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaApoderado]
+As
+Select 
+A.Cod_apo,U.Id_Ubigeo,U.Departamento,U.Provincia,U.Distrito,A.Nom_apo,A.Ape_apo,A.Dir_apo,
+A.Dni_apo,IsNull(A.Tel_pac,'-----') as Tel_apo,A.Fec_reg,A.Usu_Registro,A.Fech_Ult_Mod,A.Usu_Ult_Mod,A.Est_apo,
+Case A.Est_apo
+	when 0 then 'Inactivo'
+	when 1 then 'Activo'
+End as Estado
+From Tb_Apoderado A inner join Tb_Ubigeo U on A.Id_Ubigeo=U.Id_Ubigeo
+go
+
+/****************************************************************************/
+/*************   vw_VistaPaciente  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaPaciente]
+As
+Select 
+P.Cod_pac,P.Cod_apo,U.Id_Ubigeo,U.Departamento,U.Provincia,U.Distrito,P.Nom_pac,P.Ape_pac,P.Dir_pac,
+P.Dni_pac,IsNull(P.Tel_pac,'-----') as Tel_pac,P.Fec_reg,P.Usu_Registro,P.Fech_Ult_Mod,P.Usu_Ult_Mod,P.Est_pac,
+Case P.Est_pac
+	when 0 then 'Inactivo'
+	when 1 then 'Activo'
+End as Estado
+From Tb_Paciente P inner join Tb_Ubigeo U on P.Id_Ubigeo=U.Id_Ubigeo
+go
+
+/****************************************************************************/
+/*************   vw_VistaHorarioProfesional  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaHorarioProfesional]
+As
+Select 
+P.Cod_Pro,H.Cod_Horario_Ses,P.Nom_pro,P.Ape_pro,E.Nom_Espec,P.Email_pro,H.Descrip_dia,H.Est_Hor_Ses,
+Case H.Est_Hor_Ses
+	when 0 then 'Inactivo'
+	when 1 then 'Activo'
+End as Estado_Horario
+From Tb_Profesional P inner join Tb_Horario_Sesiones H on P.Cod_Pro=H.Cod_Pro 
+inner join Tb_Especialidad E on P.Id_Espec=E.Id_Espec
+go
+
+/****************************************************************************/
+/*************   vw_VistaEstadoSesionesPaciente  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaEstadoSesionPaciente]
+As
+Select 
+P.Cod_pac,D.Cod_Horario_Ses,P.Nom_pac,P.Ape_pac,P.Dni_pac,IsNull(P.Tel_pac,'-----') As Tel_Pac,
+D.Fec_reg As Fecha_Asignación,D.Hora_Ini As Hora_Inicio,D.Hora_Fin,D.Est_Ses_Asig,
+Case D.Est_Ses_Asig
+	when 0 then 'Sesion Cancelada'
+	when 1 then 'Sesion Asignada'
+End as Estado_Sesion
+From Tb_Paciente P inner join Tb_Detalle_Sesiones D on P.Cod_pac=D.Cod_pac 
+go
+
+/****************************************************************************/
+/*************   vw_VistaEstadoReservacionSesion  *****************************/
+/*******************************************************/
+
+Create View [dbo].[vw_VistaEstadoReservacion]
+As
+Select 
+A.Cod_apo,R.Cod_Horario_Ses,A.Nom_apo,A.Ape_apo,A.Dni_apo,IsNull(A.Tel_pac,'-----') As Tel_Apo,
+R.Fecha_Reserv As Fecha_Reservación,R.Est_Reserv,
+Case R.Est_Reserv
+	when 0 then 'Reservación Sin Confirmar'
+	when 1 then 'Reservación Confirmada'
+End as Estado_Reservacion
+From Tb_Apoderado A inner join Tb_Reservacion_Sesion R on A.Cod_apo=R.Cod_apo 
+go
+
+--06/10/2022
+
+/****************************************************************************/
+/*************   usp_ConsultarUsuario  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarUsuario]
+@vCod_usu char(3)
+As
+Select Login_Usuario,Pass_Usuario,Niv_Usuario,Est_Usuario,Fec_Registro,Usu_Registro
+From Tb_Usuario where Cod_Usu = @vCod_usu
+Go
+
+
+/****************************************************************************/
+/*************   usp_ConsultarProfesional  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarProfesional]
+@vCod_pro char(3)
+As
+Select Id_Espec,Nom_pro,Ape_pro,Sue_pro,Fech_ing,Dni_pro,Email_pro,Fech_Registro,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pro
+From [dbo].[vw_VistaProfesional] where Cod_Pro = @vCod_pro
+Go
+
+/****************************************************************************/
+/*************   usp_ConsultarEspecialidad  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarEspecialidad]
+@vId_esp int
+As
+Select Id_Espec,Nom_pro,Ape_pro,Nom_Espec,Des_Espec
+From [dbo].[vw_VistaEspecialidadProfesional] where Id_Espec = @vId_esp
+Go
+
+/****************************************************************************/
+/*************   usp_ConsultarUbigeo  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarUbigeo]
+@vId int
+As
+Select Id_Ubigeo,IdDepa,IdProv,IdDist,Departamento,Provincia,Distrito
+From [dbo].[vw_VistaUbigeo] where Id = @vId
+Go
+
+
+/****************************************************************************/
+/*************   usp_ConsultarApoderado  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarApoderado]
+@vCod_apo char(4)
+As
+Select Nom_apo,Ape_apo,Dir_apo,Departamento,Provincia,Distrito,Tel_apo,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_apo,Estado
+From [dbo].[vw_VistaApoderado] where Cod_apo = @vCod_apo
+Go
+
+/****************************************************************************/
+/*************   usp_ConsultarPaciente  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarPaciente]
+@vCod_pac varchar(4)
+As
+Select Nom_pac,Ape_pac,Dir_pac,Departamento,Provincia,Distrito,Tel_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
+From [dbo].[vw_VistaPaciente] where Cod_pac = @vCod_pac
+Go
+
+/****************************************************************************/
+/*************   [usp_ConsultarHorarioSesiones  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarHorarioSesiones]
+@vCod_hor_ses int
+As
+Select Nom_pro,Ape_pro,Nom_Espec,Email_pro,Descrip_dia,Est_Hor_Ses,Estado_Horario
+From [dbo].[vw_VistaHorarioProfesional] where Cod_Horario_Ses = @vCod_hor_ses
+Go
+
+/****************************************************************************/
+/*************   [usp_ConsultarDetalleSesiones]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarEstadoDetalleSesiones]
+@vCod_pac varchar(4)
+As
+Select Cod_Horario_Ses,Nom_pac,Ape_pac,Dni_pac,Tel_Pac,Fecha_Asignación,Hora_Inicio,Hora_Fin,Est_Ses_Asig,Estado_Sesion
+From [dbo].[vw_VistaEstadoSesionPaciente] where Est_Ses_Asig=1 and Cod_pac = @vCod_pac
+Go
+
+/****************************************************************************/
+/*************   [usp_ConsultarEstadoReservacion]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarEstadoReservacion]
+@vCod_apo char(4)
+As
+Select Cod_Horario_Ses,Nom_apo,Ape_apo,Dni_apo,Tel_Apo,Fecha_Reservación,Est_Reserv,Estado_Reservacion
+From [dbo].[vw_VistaEstadoReservacion] where Est_Reserv=1 and Cod_apo = @vCod_apo
+Go
