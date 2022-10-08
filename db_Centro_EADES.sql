@@ -293,23 +293,23 @@ Insert Tb_Usuario Values (N'U03',N'Admin', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T
 
 -- cambios al insert de usuario
 
-Insert Tb_Usuario Values (N'Lucas Lope', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Santiago Queirolo', N'pass456', 2 , 1, CAST(N'2020-08-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Alisson Ugarte', N'S0p0rt3', 1 , 1, CAST(N'2022-01-15T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Jesus Maestro', N'pass123', 2 , 1, CAST(N'2022-03-03T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Manuel Arturo', N'pass456', 2 , 1, CAST(N'2021-09-09T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Nicolle Watterson', N'S0p0rt3', 1 , 1, CAST(N'2002-06-03T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Camila Navarrete', N'pass123', 2 , 1, CAST(N'2019-09-18T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Hanna Montana', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Candace Ramirez', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Elver Galarga', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'José Olaya', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Carlos Ochoa', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Mauricio Babilonia', N'pass123', 2 , 1, CAST(N'2020-05-05T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Remedios Buen Día', N'pass456', 2 , 1, CAST(N'2022-09-06T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Úrsula Iguarán', N'S0p0rt3', 1 , 1, CAST(N'2022-05-01T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'Pietro Crespi', N'pass123', 2 , 1, CAST(N'2022-06-30T00:00:00.000' AS DateTime), N'Admin')
-Insert Tb_Usuario Values (N'José Ramirez', N'pass456', 2 , 1, CAST(N'2022-07-19T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U04',N'Lucas Lope', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U05',N'Santiago Queirolo', N'pass456', 2 , 1, CAST(N'2020-08-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U06',N'Alisson Ugarte', N'S0p0rt3', 1 , 1, CAST(N'2022-01-15T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U07',N'Jesus Maestro', N'pass123', 2 , 1, CAST(N'2022-03-03T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U08',N'Manuel Arturo', N'pass456', 2 , 1, CAST(N'2021-09-09T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U09',N'Nicolle Watterson', N'S0p0rt3', 1 , 1, CAST(N'2002-06-03T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U10',N'Camila Navarrete', N'pass123', 2 , 1, CAST(N'2019-09-18T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U11',N'Hanna Montana', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U12',N'Candace Ramirez', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U13',N'Elver Galarga', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U14',N'José Olaya', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U15',N'Carlos Ochoa', N'S0p0rt3', 1 , 1, CAST(N'2022-08-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U16',N'Mauricio Babilonia', N'pass123', 2 , 1, CAST(N'2020-05-05T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U17',N'Remedios Buen Día', N'pass456', 2 , 1, CAST(N'2022-09-06T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U18',N'Úrsula Iguarán', N'S0p0rt3', 1 , 1, CAST(N'2022-05-01T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U19',N'Pietro Crespi', N'pass123', 2 , 1, CAST(N'2022-06-30T00:00:00.000' AS DateTime), N'Admin')
+Insert Tb_Usuario Values (N'U20',N'José Ramirez', N'pass456', 2 , 1, CAST(N'2022-07-19T00:00:00.000' AS DateTime), N'Admin')
 
 /*INSERT TABLE UBIGEO*/
 
@@ -2233,9 +2233,34 @@ Go
 Select * From Tb_Apoderado;
 Select * from Tb_Ubigeo where Id_Ubigeo = '010101';
 
+use [Centro-EADES]
+go
+
 INSERT [Tb_Apoderado] VALUES (N'A001', N'140101' ,'Manuel','Gutierrez Reyes', N'Calle Independencia 123', N'77737458', N'999124279', CAST(N'2018-09-15T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Apoderado] VALUES (N'A002', N'140102' ,'Daniela','Guevara Mejia', N'Calle Esperanza 478', N'43737458', N'998824278', CAST(N'2018-08-14T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
 INSERT [Tb_Apoderado] VALUES (N'A003', N'140103' ,'Fannia','Ramos Icht ',  N'Jr. Libertad 156', N'56737458', N'998342576', CAST(N'2018-07-13T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+
+-- Adición de apoderados
+INSERT [Tb_Apoderado] VALUES (N'A004', N'250103' ,'Manuel','Coronado Preciado', N'Calle Independencia 200', N'85713864', N'999123308', CAST(N'2018-10-30T00:00:00.000' AS DateTime), N'Lucas Caviar',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A005', N'250106' ,'Miguel','Carvantes Mendoza', N'Calle Cruceta 126', N'15562111', N'99869423', CAST(N'2017-09-04T00:00:00.000' AS DateTime), N'Nicolas Amadeo',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A006', N'220213' ,'Fanny','Sparkle ',  N'Jr. La Molina 789', N'80557887', N'998593347', CAST(N'2019-09-09T00:00:00.000' AS DateTime), N'Mauricio Carvajal',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A007', N'211004' ,'Rita','Perez Ayala', N'Calle Los Carrizos 363', N'42027695', N'999216204', CAST(N'2018-01-16T00:00:00.000' AS DateTime), N'Celeste Villanueva',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A008', N'210503' ,'Lisa','Mosqote Villa', N'Calle Pista Nueva 59', N'19827611', N'998930471', CAST(N'2018-10-10T00:00:00.000' AS DateTime), N'Paolo Carvajal',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A009', N'210205' ,'Celeste','Rosquete Campos',  N'Calle SrJuan 150', N'16175547', N'998788783', CAST(N'2018-07-13T00:00:00.000' AS DateTime), N'Amber Jara',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A010', N'200806' ,'Elma','Mador', N'Calle Los últimos de Dios 780', N'84546953', N'999686078', CAST(N'2019-10-15T00:00:00.000' AS DateTime), N'Daniel Ramos',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A011', N'200701' ,'Daniel','Ereje Campos', N'Calle Las Gaviotas 666', N'85980058', N'998694791', CAST(N'2018-06-04T00:00:00.000' AS DateTime), N'Carlos',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A012', N'200504' ,'Fiona','Obregón Escala',  N'Calle Los Girasoles 659', N'40703331', N'99860402', CAST(N'2018-02-20T00:00:00.000' AS DateTime), N'Estefany',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A013', N'200303' ,'Manco','Quispe Huaylas', N'Calle Los Primeros 450', N'39554887', N'999488735', CAST(N'2018-10-11T00:00:00.000' AS DateTime), N'Candace',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A014', N'200204' ,'Simon','Primo de Rivera', N'Calle Matelini 125', N'36299007', N'998619623', CAST(N'2018-08-10T00:00:00.000' AS DateTime), N'Sebastian',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A015', N'200103' ,'Francisco','Franco',  N'Calle Los caminos 780', N'25013922', N'998912020', CAST(N'2018-07-12T00:00:00.000' AS DateTime), N'Esmeralda Iguarán',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A016', N'180108' ,'Matías','De la Rosa Gonzales', N'Calle Sin Esperanza 200', N'11449393', N'999753079', CAST(N'2018-09-10T00:00:00.000' AS DateTime), N'Eulalia',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A017', N'160202' ,'Paulo','Torres Villanueva', N'Calle Esperanza 478', N'81732377', N'998300037', CAST(N'2018-08-01T00:00:00.000' AS DateTime), N'José Rivero',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A020', N'150406' ,'Lucas','Mother Tres', N'Calle Esperanza 478', N'79737364', N'998906620', CAST(N'2018-10-24T00:00:00.000' AS DateTime), N'Julio Ramón',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A021', N'150305' ,'Esmeralda','Rojas Comas ',  N'Jr. Libertad 156', N'87087642', N'998433798', CAST(N'2018-03-13T00:00:00.000' AS DateTime), N'Clarín Alas',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A022', N'150301' ,'Cristian','Perez de Ayala', N'Calle Independencia 123', N'34227187', N'999218598', CAST(N'2018-10-25T00:00:00.000' AS DateTime), N'Diana Ana',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A023', N'140902' ,'Carla','De la Nueva', N'Calle Esperanza 477', N'45911925', N'999886527', CAST(N'2018-12-13T00:00:00.000' AS DateTime), N'Paula Ramirez',NULL, NULL, 1)
+INSERT [Tb_Apoderado] VALUES (N'A024', N'140901' ,'Ana','Cristiana',  N'Jr. Estrella 188', N'20118712', N'998661745', CAST(N'2018-12-23T00:00:00.000' AS DateTime), N'Pilar Soto',NULL, NULL, 1)
+
 go
 
 /*INSERT HORARIO_SESIONES*/
