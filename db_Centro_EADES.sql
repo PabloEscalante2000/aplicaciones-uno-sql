@@ -2296,9 +2296,26 @@ go
 /*INSERT PACIENTE*/
 
 Select * From Tb_Paciente
-INSERT [Tb_Paciente] VALUES (N'P001',N'A001', N'140101' ,'Elias','Gutierrez Alba', N'Calle Independencia 123', N'71234458', N'999124887', CAST(N'2018-09-17T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Paciente] VALUES (N'P002',N'A002', N'140102' ,'Sofia','Abal Guevara', N'Calle Esperanza 478', N'77664458', N'982124887', CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Paciente] VALUES (N'P003',N'A003', N'140103' ,'Lu','Ramos Icht', N'Jr. Libertad 156', N'78291458', N'983124887', CAST(N'2018-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+--Agregado 13/10/22
+INSERT [Tb_Paciente] VALUES (N'P004',N'A004', N'250103' ,'Maria','Serpa Heredia', N'Jr. Esperanza 234', N'77291458', N'987724887', CAST(N'2018-08-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P005',N'A005', N'250106' ,'Medalia','Guevara Linch', N'Jr. Inclan 198', N'70291458', N'999124887', CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P006',N'A006', N'220213' ,'Roxana','Aquino Flores', N'Jr. Pando 892', N'78221458', N'900124887', CAST(N'2018-10-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P007',N'A007', N'211004' ,'Daniela','Avila Castro', N'Calle. Santa Maria 262', N'68291458', N'980024887', CAST(N'2018-11-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P008',N'A008', N'210503' ,'Antonia','Vespucio Celis', N'Calle. Aldabas 321', N'58291458', N'983123887', CAST(N'2018-12-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P009',N'A009', N'210205' ,'Luisa','Larrea Riquelme', N'Calle. Carabaya 196', N'76291458', N'983188887', CAST(N'2019-01-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P010',N'A010', N'200806' ,'Jose','Espert Milei', N'Av. Bodegones 1736', N'78294458', N'989124887', CAST(N'2019-02-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P011',N'A011', N'200701' ,'Jedy','Vilcatoma Mejia', N'Av. Concepcion 872', N'76691458', N'988124887', CAST(N'2019-03-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P012',N'A012', N'200504' ,'Silvia','Xeno Zoldiek', N'Av. Cueva 726', N'78293358', N'987124887', CAST(N'2019-04-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P013',N'A013', N'200303' ,'Ruben','Castro De la Cruz', N'Av. Sucre 1256', N'78221458', N'986124887', CAST(N'2019-05-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P014',N'A014', N'200204' ,'Prudencio','Ochoa Paredes', N'Av. La Marina 1156', N'44291458', N'985124887', CAST(N'2019-06-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P015',N'A015', N'200103' ,'Bertha','Valerio Ayala', N'Av. Argentina 2391', N'66291458', N'984124887', CAST(N'2019-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P016',N'A016', N'180108' ,'Irina','Costacurta Maldini', N'Av. Colonial 2821', N'78222458', N'903124887', CAST(N'2019-08-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P017',N'A017', N'160202' ,'Pedro','Aquino Ureta', N'Av. Alfonso Ugarte 1827', N'78291919', N'913124887', CAST(N'2019-09-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P018',N'A020', N'150406' ,'Moises','Guevara Hinostrosa', N'Av. Garcia Naranjo 1256', N'78123458', N'923124887', CAST(N'2019-10-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P019',N'A021', N'150305' ,'Ana','Rios Dias', N'Av. Mariano Carranza 2156', N'78244458', N'933124887', CAST(N'2019-11-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P020',N'A022', N'150301' ,'Kirk','Flores Acosta', N'Av. Morales Duarez 3156', N'81791458', N'943124887', CAST(N'2019-12-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 go
 
 
@@ -2308,6 +2325,25 @@ Select * From Tb_Detalle_Sesiones
 INSERT [Tb_Detalle_Sesiones] VALUES (N'P001', 1, N'9:00 am' , N'11:00 am', CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Detalle_Sesiones] VALUES (N'P002', 2, N'8:00 am' , N'10:00 am', CAST(N'2018-08-20T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Detalle_Sesiones] VALUES (N'P003', 3, N'4:00 pm' , N'6:00 pm', CAST(N'2018-08-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+--Agregado 13/10/22
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P004', 4, N'7:00 pm' , N'10:00 pm', CAST(N'2018-07-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P005', 5, N'9:00 am' , N'11:00 am', CAST(N'2018-06-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P006', 6, N'8:00 am' , N'10:00 am', CAST(N'2018-05-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P007', 7, N'4:00 pm' , N'6:00 pm', CAST(N'2018-04-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P008', 8, N'7:00 pm' , N'10:00 pm', CAST(N'2018-03-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P009', 9, N'9:00 am' , N'11:00 am', CAST(N'2018-02-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P010', 10, N'8:00 am' , N'10:00 am', CAST(N'2018-01-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P011', 11, N'4:00 pm' , N'6:00 pm', CAST(N'2019-01-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P012', 12, N'7:00 pm' , N'10:00 pm', CAST(N'2019-02-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P013', 13, N'9:00 am' , N'11:00 am', CAST(N'2019-03-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P014', 14, N'8:00 am' , N'10:00 am', CAST(N'2019-04-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P015', 15, N'4:00 pm' , N'6:00 pm', CAST(N'2019-05-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P016', 16, N'7:00 pm' , N'10:00 pm', CAST(N'2019-06-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P017', 17, N'9:00 am' , N'11:00 am', CAST(N'2019-07-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P018', 18, N'8:00 am' , N'10:00 am', CAST(N'2019-08-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P019', 19, N'4:00 pm' , N'6:00 pm', CAST(N'2019-09-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P020', 20, N'7:00 pm' , N'10:00 pm', CAST(N'2019-10-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+
 go
 
 /*INSERT RESERVACION_SESION*/
