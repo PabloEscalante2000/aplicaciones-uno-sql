@@ -110,7 +110,7 @@ go
 /*CREAMOS LA TABLA Tb_Especialidad*/
 CREATE TABLE Tb_Especialidad
 (
-	Id_Espec [int] NOT NULL,
+	Id_Espec [int] IDENTITY (1,1) NOT NULL,
 	Nom_Espec [varchar](50) NULL,
 	Des_Espec [varchar](50) NULL
 )
@@ -121,7 +121,7 @@ go
 /*CREAMOS LA TABLA Tb_Horario_Sesiones*/
 CREATE TABLE Tb_Horario_Sesiones
 (
-	Cod_Horario_Ses [int] NOT NULL,
+	Cod_Horario_Ses [int] IDENTITY (1,1) NOT NULL,
 	Cod_Pro [nchar](3) NOT NULL,
 	Descrip_dia [nvarchar](50) NOT NULL,
 	Est_Hor_Ses [int] NOT NULL
@@ -2180,6 +2180,7 @@ GO
 
 Select * From Tb_Especialidad
 
+Set Identity_Insert [dbo].[Tb_Especialidad] On
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (1,'Psicologo','Especialista patrones anormales de comportamiento')
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (2,'Psiquiatra','Medico especialista patrones anormales mentales.')
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (3,'Terapeuta Infantil','Especialista comportamiento infantil')
@@ -2200,6 +2201,7 @@ Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (17,'psicog
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (18,'Psicólogo de marketing','Especialistas en el marketing')
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (19,'Psicologo General','psicólogo sin ninguna especialidad')
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (20,'Practicante','Estudiante')
+Set Identity_Insert [dbo].[Tb_Especialidad] Off
 GO
 
 /*INSERT PROFESIONAL*/
@@ -2270,26 +2272,28 @@ go
 
 Select * From Tb_Horario_Sesiones
 
-INSERT [Tb_Horario_Sesiones] VALUES ( 1, N'P01' , N'Martes , Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 2, N'P02' , N'Lunes , Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 3, N'P03' , N'Martes , Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 4, N'P04' , N'Lunes , Miercoles , Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 5, N'P05' , N'Lunes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 6, N'P06' , N'Martes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 7, N'P07' , N'Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 8, N'P08' , N'Miercoles , Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 9, N'P09' , N'Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 10, N'P10' , N'Martes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 11, N'P11' , N'Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 12, N'P12' , N'Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 13, N'P13' , N'Martes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 14, N'P14' , N'Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 15, N'P15' , N'Martes , Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 16, N'P16' , N'Lunes , Miercoles , Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 17, N'P17' , N'Martes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 18, N'P18' , N'Lunes , Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 19, N'P19' , N'Martes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 20, N'P20' , N'Lunes , Miercoles , Viernes', 1)
+Set Identity_Insert [dbo].[Tb_Horario_Sesiones] On
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 1, N'P01' , N'Martes , Jueves', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 2, N'P02' , N'Lunes , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 3, N'P03' , N'Martes , Jueves', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 4, N'P04' , N'Lunes , Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 5, N'P05' , N'Lunes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 6, N'P06' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 7, N'P07' , N'Jueves', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 8, N'P08' , N'Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 9, N'P09' , N'Jueves', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 10, N'P10' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 11, N'P11' , N'Jueves', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 12, N'P12' , N'Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 13, N'P13' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 14, N'P14' , N'Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 15, N'P15' , N'Martes , Jueves', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 16, N'P16' , N'Lunes , Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 17, N'P17' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 18, N'P18' , N'Lunes , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 19, N'P19' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 20, N'P20' , N'Lunes , Miercoles , Viernes', 1)
+Set Identity_Insert [dbo].[Tb_Horario_Sesiones] Off
 go
 
 
@@ -2451,13 +2455,12 @@ go
 /* usp_InsertarEspecialiadad */
 
 Create Procedure [dbo].[usp_InsertarEspecialidad]
-@vId_Espec int,
 @vNom_Espec varchar(50),
 @vDes_Espec varchar(50)
 as
 --Insertamos una nueva especialidad
 Insert into Tb_Especialidad values 
-(@vId_Espec , @vNom_Espec, @vDes_Espec)
+(@vNom_Espec, @vDes_Espec)
 GO
 
 --EXEC [usp_InsertarEspecialidad]  4,'Terapeuta Adulto','Especialista en el adulto mayor' 
@@ -2547,14 +2550,13 @@ go
 
 /* usp_InsertarHorarioSesiones */
 CREATE PROCEDURE [dbo].[usp_InsertarHorarioSesiones]
-@vCod_Hora_Ses int,
 @vCod_Pro char(3),
 @vDes_dia varchar(50),
 @vEst int
 as
 --Insertamos un nuevo horario de sesiones
 Insert into Tb_Horario_Sesiones values 
-(@vCod_Hora_Ses , @vCod_Pro, @vDes_dia,@vEst)
+(@vCod_Pro, @vDes_dia,@vEst)
 GO
 
 
