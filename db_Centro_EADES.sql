@@ -12,7 +12,6 @@ GO
 /*CREACION DE BASE DE DATOS CLINICA EADES*/
 
 Create Database [Centro-EADES]
-GO
 /*Containment = None
 On Primary
 (	Name = N'Centro-EADES', 
@@ -26,8 +25,8 @@ Log on
 	Size = 6912KB ,
 	Maxsize = 2048GB, 
 	Filegrowth = 10%)
-With Catalog_Collation = Database_Default
-Go*/
+With Catalog_Collation = Database_Default*/
+Go
 
 use [Centro-EADES]
 go
@@ -2300,6 +2299,7 @@ go
 /*INSERT PACIENTE*/
 
 Select * From Tb_Paciente
+INSERT [Tb_Paciente] VALUES (N'P001',N'A002', N'140102' ,'Sofi','Abigail', N'Calle Muerte 210', N'77664458', N'982124887', CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Paciente] VALUES (N'P002',N'A002', N'140102' ,'Sofia','Abal Guevara', N'Calle Esperanza 478', N'77664458', N'982124887', CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Paciente] VALUES (N'P003',N'A003', N'140103' ,'Lu','Ramos Icht', N'Jr. Libertad 156', N'78291458', N'983124887', CAST(N'2018-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
 --Agregado 13/10/22
@@ -2324,6 +2324,9 @@ go
 
 
 /*INSERT DETALLE_SESIONES*/
+
+select * from Tb_Paciente
+go
 
 Select * From Tb_Detalle_Sesiones
 INSERT [Tb_Detalle_Sesiones] VALUES (N'P001', 1, N'9:00 am' , N'11:00 am', CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
@@ -2418,6 +2421,9 @@ GO
 /*******************************************************/
 
 /* usp_InsertarProfesional */
+
+Drop procedure [dbo].[usp_InsertarProfesional]
+go
 
 Create Procedure [dbo].[usp_InsertarProfesional]
 @vId_Espec int,
@@ -3420,3 +3426,6 @@ From [dbo].[vw_VistaEstadoReservacion]
 Where Est_Reserv = 1 
 Order by Fecha_Reservación desc
 GO
+
+use master
+go
