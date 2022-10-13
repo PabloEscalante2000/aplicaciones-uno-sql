@@ -2265,12 +2265,31 @@ go
 
 /*INSERT HORARIO_SESIONES*/
 
+use [Centro-EADES]
+go
+
 Select * From Tb_Horario_Sesiones
 
 INSERT [Tb_Horario_Sesiones] VALUES ( 1, N'P01' , N'Martes , Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 2, N'P01' , N'Lunes , Viernes', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 3, N'P02' , N'Martes , Jueves', 1)
-INSERT [Tb_Horario_Sesiones] VALUES ( 4, N'P02' , N'Lunes , Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 2, N'P02' , N'Lunes , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 3, N'P03' , N'Martes , Jueves', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 4, N'P04' , N'Lunes , Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 5, N'P05' , N'Lunes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 6, N'P06' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 7, N'P07' , N'Jueves', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 8, N'P08' , N'Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 9, N'P09' , N'Jueves', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 10, N'P10' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 11, N'P11' , N'Jueves', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 12, N'P12' , N'Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 13, N'P13' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 14, N'P14' , N'Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 15, N'P15' , N'Martes , Jueves', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 16, N'P16' , N'Lunes , Miercoles , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 17, N'P17' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 18, N'P18' , N'Lunes , Viernes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 19, N'P19' , N'Martes', 1)
+INSERT [Tb_Horario_Sesiones] VALUES ( 20, N'P20' , N'Lunes , Miercoles , Viernes', 1)
 go
 
 
@@ -2293,10 +2312,30 @@ go
 
 /*INSERT RESERVACION_SESION*/
 
+use [Centro-EADES]
+go
+
 Select * From Tb_Reservacion_Sesion
 INSERT [Tb_Reservacion_Sesion] VALUES (N'A001', 1, CAST(N'2018-09-19T00:00:00.000' AS DateTime),1, CAST(N'2018-09-18T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
 INSERT [Tb_Reservacion_Sesion] VALUES (N'A002', 2, CAST(N'2018-08-20T00:00:00.000' AS DateTime),1, CAST(N'2018-08-19T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
 INSERT [Tb_Reservacion_Sesion] VALUES (N'A003', 3, CAST(N'2018-08-21T00:00:00.000' AS DateTime),1, CAST(N'2018-08-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A004', 4, CAST(N'2018-09-21T00:00:00.000' AS DateTime),1, CAST(N'2018-09-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A005', 5, CAST(N'2018-08-21T00:00:00.000' AS DateTime),1, CAST(N'2018-08-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A006', 6, CAST(N'2018-09-01T00:00:00.000' AS DateTime),1, CAST(N'2018-08-30T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A007', 7, CAST(N'2018-08-10T00:00:00.000' AS DateTime),1, CAST(N'2018-08-09T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A008', 8, CAST(N'2018-08-23T00:00:00.000' AS DateTime),1, CAST(N'2018-08-22T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A009', 9, CAST(N'2018-08-21T00:00:00.000' AS DateTime),1, CAST(N'2018-08-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A010', 10, CAST(N'2018-09-13T00:00:00.000' AS DateTime),1, CAST(N'2018-09-17T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A011', 11, CAST(N'2018-08-22T00:00:00.000' AS DateTime),1, CAST(N'2018-08-18T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A012', 12, CAST(N'2018-08-21T00:00:00.000' AS DateTime),1, CAST(N'2018-08-19T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A013', 13, CAST(N'2018-08-23T00:00:00.000' AS DateTime),1, CAST(N'2018-08-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A014', 14, CAST(N'2018-08-24T00:00:00.000' AS DateTime),1, CAST(N'2018-08-23T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A015', 15, CAST(N'2018-08-21T00:00:00.000' AS DateTime),1, CAST(N'2018-08-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A016', 16, CAST(N'2018-09-19T00:00:00.000' AS DateTime),1, CAST(N'2018-09-18T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A017', 17, CAST(N'2018-08-20T00:00:00.000' AS DateTime),1, CAST(N'2018-08-19T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A020', 18, CAST(N'2018-08-20T00:00:00.000' AS DateTime),1, CAST(N'2018-08-19T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A021', 19, CAST(N'2018-09-13T00:00:00.000' AS DateTime),1, CAST(N'2018-09-12T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
+INSERT [Tb_Reservacion_Sesion] VALUES (N'A022', 20, CAST(N'2018-08-22T00:00:00.000' AS DateTime),1, CAST(N'2018-08-21T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
 go
 
 
