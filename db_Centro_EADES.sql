@@ -3184,3 +3184,201 @@ As
 Select Cod_Horario_Ses,Nom_apo,Ape_apo,Dni_apo,Tel_Apo,Fecha_Reservación,Est_Reserv,Estado_Reservacion
 From [dbo].[vw_VistaEstadoReservacion] where Est_Reserv=1 and Cod_apo = @vCod_apo
 Go
+
+/****************************************************************************/
+/*************   [usp_ListarUsuario]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarUsuario]
+As
+Select [Cod_Usu],
+		[Login_Usuario],
+		[Pass_Usuario],
+		[Niv_Usuario],
+		[Nivel],
+		[Est_Usuario],
+		[Estado],
+		[Fec_Registro],
+		[Usu_Registro]
+From [dbo].[vw_VistaUsuarios]
+Order by Fec_Registro
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarProfesional]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarProfesional]
+As
+Select [Cod_Pro]
+      ,[Id_Espec]
+      ,[Nom_pro]
+      ,[Ape_pro]
+      ,[Sue_pro]
+      ,[Fech_ing]
+      ,[Antiguedad_Años]
+      ,[Dni_pro]
+      ,[Email_pro]
+      ,[Fech_Registro]
+      ,[Usu_Registro]
+      ,[Fech_Ult_Mod]
+      ,[Usu_Ult_Mod]
+      ,[Est_pro]
+      ,[Estado]
+From [dbo].[vw_VistaProfesional]
+Order by Antiguedad_Años desc
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarEspecialidad]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarEspecialidad]
+As
+Select [Id_Espec]
+      ,[Nom_pro]
+      ,[Ape_pro]
+      ,[Nom_Espec]
+      ,[Des_Espec]
+From [dbo].[vw_VistaEspecialidadProfesional]
+Order by Id_Espec desc
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarUbigeo]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarUbigeo]
+@vthreeletters char(3)
+As
+Select [Id]
+      ,[Id_Ubigeo]
+      ,[IdDepa]
+      ,[IdProv]
+      ,[IdDist]
+      ,[Departamento]
+      ,[Provincia]
+      ,[Distrito]
+      ,[Cod_pro]
+From [dbo].[vw_VistaUbigeo]
+Where Departamento like '%' + @vthreeletters + '%'
+Order by Id desc
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarApoderado]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarApoderado]
+As
+Select [Cod_apo]
+      ,[Id_Ubigeo]
+      ,[Departamento]
+      ,[Provincia]
+      ,[Distrito]
+      ,[Nom_apo]
+      ,[Ape_apo]
+      ,[Dir_apo]
+      ,[Dni_apo]
+      ,[Tel_apo]
+      ,[Fec_reg]
+      ,[Usu_Registro]
+      ,[Fech_Ult_Mod]
+      ,[Usu_Ult_Mod]
+      ,[Est_apo]
+      ,[Estado]
+From [dbo].[vw_VistaApoderado]
+Where Est_apo = 1
+Order by Fec_reg desc
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarPaciente]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarPaciente]
+As
+Select [Cod_pac]
+      ,[Cod_apo]
+      ,[Id_Ubigeo]
+      ,[Departamento]
+      ,[Provincia]
+      ,[Distrito]
+      ,[Nom_pac]
+      ,[Ape_pac]
+      ,[Dir_pac]
+      ,[Dni_pac]
+      ,[Tel_pac]
+      ,[Fec_reg]
+      ,[Usu_Registro]
+      ,[Fech_Ult_Mod]
+      ,[Usu_Ult_Mod]
+      ,[Est_pac]
+      ,[Estado]
+From [dbo].[vw_VistaPaciente]
+Where Est_pac = 1
+Order by Fec_reg desc
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarHorarioProfesional]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarHorarioProfesional]
+@vNom_Espec varchar(6)
+As
+Select [Cod_Pro]
+      ,[Cod_Horario_Ses]
+      ,[Nom_pro]
+      ,[Ape_pro]
+      ,[Nom_Espec]
+      ,[Email_pro]
+      ,[Descrip_dia]
+      ,[Est_Hor_Ses]
+      ,[Estado_Horario]
+From [dbo].[vw_VistaHorarioProfesional]
+Where Est_Hor_Ses = 1 And Nom_Espec Like '%'+ @vNom_Espec +'%'
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarDetalleSesiones]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarDetalleSesiones]
+@vHor_Ini varchar(8),
+@vHor_Fin varchar(8)
+As
+Select [Cod_pac]
+      ,[Cod_Horario_Ses]
+      ,[Nom_pac]
+      ,[Ape_pac]
+      ,[Dni_pac]
+      ,[Tel_Pac]
+      ,[Fecha_Asignación]
+      ,[Hora_Inicio]
+      ,[Hora_Fin]
+      ,[Est_Ses_Asig]
+      ,[Estado_Sesion]
+From [dbo].[vw_VistaEstadoSesionPaciente]
+Where Est_Ses_Asig = 1 And Hora_Inicio Like '%'+ @vHor_Ini +'%' And Hora_Fin Like '%' + @vHor_Fin + '%'
+GO
+
+/****************************************************************************/
+/*************   [usp_ListarReservacionSesion]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ListarReservacionSesion]
+As
+Select [Cod_apo]
+      ,[Cod_Horario_Ses]
+      ,[Nom_apo]
+      ,[Ape_apo]
+      ,[Dni_apo]
+      ,[Tel_Apo]
+      ,[Fecha_Reservación]
+      ,[Est_Reserv]
+      ,[Estado_Reservacion]
+From [dbo].[vw_VistaEstadoReservacion]
+Where Est_Reserv = 1 
+Order by Fecha_Reservación desc
+GO
