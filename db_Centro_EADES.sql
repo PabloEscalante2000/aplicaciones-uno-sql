@@ -1,31 +1,31 @@
-USE [master]
-GO
+--USE [master]
+--GO
 
 --Adicion de borrado de base de datos
-DROP DATABASE [Centro-EADES]
-go
+--DROP DATABASE [Centro-EADES]
+--go
 
 --Usar centro EADES
-USE [Centro-EADES]
-GO
+--USE [Centro-EADES]
+--GO
 
 /*CREACION DE BASE DE DATOS CLINICA EADES*/
 
 Create Database [Centro-EADES]
-/*Containment = None
+Containment = None
 On Primary
-(	Name = N'Centro-EADES', 
-	Filename = N'C:\Users\USUARIO\CURSOS_DE_PROGRAMACION\Curso_Aplicaciones_I\BBDD\Centro-EADES.mdf' , 
+(	Name = N'Centro-EADES_Dat', 
+	Filename = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\Centro-EADES_Dat.mdf' , 
 	Size = 10240KB ,
 	Maxsize = Unlimited, 
 	Filegrowth = 1024KB)
 Log on
 (	Name = N'Centro-EADES_log', 
-	Filename = N'C:\Users\USUARIO\CURSOS_DE_PROGRAMACION\Curso_Aplicaciones_I\BBDD\Centro-EADES_log.ldf' , 
+	Filename = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\Centro-EADES_log.ldf' , 
 	Size = 6912KB ,
 	Maxsize = 2048GB, 
 	Filegrowth = 10%)
-With Catalog_Collation = Database_Default*/
+With Catalog_Collation = Database_Default
 Go
 
 use [Centro-EADES]
@@ -41,7 +41,7 @@ CREATE TABLE Tb_Apoderado
 	Ape_apo [nvarchar](25) NULL,
 	Dir_apo [nvarchar](50) NULL,
 	Dni_apo [nchar](8) NULL,
-	Tel_pac [nvarchar](10) NULL,
+	Tel_apo [nvarchar](10) NULL,
 	Fec_reg [datetime] NOT NULL,
 	Usu_Registro [varchar](20) NULL,
 	Fech_Ult_Mod [datetime] NULL,
@@ -155,7 +155,8 @@ CREATE TABLE Tb_Detalle_Sesiones
 	Usu_Registro [varchar](20) NULL,
 	Fec_Ult_Mod [datetime] NULL,
 	Usu_Ult_Mod [varchar](20) NULL,
-	Est_Ses_Asig [int] NULL
+	Est_Ses_Asig [int] NULL,
+	Descrip_Sesion [nvarchar](400) NULL
 )
 go
 
@@ -172,6 +173,9 @@ CREATE TABLE Tb_Paciente
 	Dir_pac [nvarchar](50) NULL,
 	Dni_pac [nchar](8) NULL,
 	Tel_pac [nvarchar](10) NULL,
+	Sexo [nvarchar](1) NULL,
+	Fec_nac [datetime] NULL,
+	Foto_pac [image] NULL,
 	Fec_reg [datetime] NOT NULL,
 	Usu_Registro [varchar](20) NULL,
 	Fech_Ult_Mod [datetime] NULL,
@@ -284,7 +288,7 @@ Alter Table Tb_Paciente Add Constraint Def_Pac_Fec_Reg Default (getdate()) For F
 
 /*INSERT TABLE USUARIO*/
 
-Select * From Tb_Usuario
+--Select * From Tb_Usuario
 
 Insert Tb_Usuario Values (N'U01', N'Ximena Diaz', N'pass123', 2 , 1, CAST(N'2022-09-30T00:00:00.000' AS DateTime), N'Admin')
 Insert Tb_Usuario Values (N'U02',N'Paola Sifuentes', N'pass456', 2 , 1, CAST(N'2022-09-29T00:00:00.000' AS DateTime), N'Admin')
@@ -312,8 +316,8 @@ Insert Tb_Usuario Values (N'U20',N'José Ramirez', N'pass456', 2 , 1, CAST(N'202
 
 /*INSERT TABLE UBIGEO*/
 
-Select * From Tb_Ubigeo
-go
+--Select * From Tb_Ubigeo
+--go
 --delete from Tb_Ubigeo where Id_Ubigeo = '010101';
 
 INSERT [dbo].[Tb_Ubigeo] ([Id_Ubigeo], [IdDepa], [IdProv], [IdDist], [Departamento], [Provincia], [Distrito], [Cod_Pro]) VALUES (N'010101', N'01', N'01', N'01', N'AMAZONAS', N'CHACHAPOYAS', N'CHACHAPOYAS', NULL)
@@ -2177,7 +2181,7 @@ GO
 
 /*INSERT ESPECIALIDAD*/
 
-Select * From Tb_Especialidad
+--Select * From Tb_Especialidad
 
 Set Identity_Insert [dbo].[Tb_Especialidad] On
 Insert [Tb_Especialidad] ([Id_Espec],[Nom_Espec],[Des_Espec]) Values (1,'Psicologo','Especialista patrones anormales de comportamiento')
@@ -2205,7 +2209,7 @@ GO
 
 /*INSERT PROFESIONAL*/
 
-Select * From Tb_Profesional
+--Select * From Tb_Profesional
 
 INSERT [Tb_Profesional] VALUES (N'P01', 1 , N'Juan Ramon', N'Sequeiros Ramos', 2200.0000, CAST(N'2010-11-15T00:00:00.000' AS DateTime), N'40736223', N'jramonsq56@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
 INSERT [Tb_Profesional] VALUES (N'P02', 2 , N'Maria Mercedes', N'Olivares Mejia', 4000.0000, CAST(N'2011-11-15T00:00:00.000' AS DateTime), N'78915468', N'marita69@gmail.com', CAST(N'2015-11-08T11:15:28.353' AS DateTime), N'Admin', NULL, NULL, 1)
@@ -2231,11 +2235,11 @@ Go
 
 /*INSERT APODERADO*/
 
-Select * From Tb_Apoderado;
-Select * from Tb_Ubigeo where Id_Ubigeo = '010101';
+--Select * From Tb_Apoderado;
+--Select * from Tb_Ubigeo where Id_Ubigeo = '010101';
 
-use [Centro-EADES]
-go
+--use [Centro-EADES]
+--go
 
 INSERT [Tb_Apoderado] VALUES (N'A001', N'140101' ,'Manuel','Gutierrez Reyes', N'Calle Independencia 123', N'77737458', N'999124279', CAST(N'2018-09-15T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 INSERT [Tb_Apoderado] VALUES (N'A002', N'140102' ,'Daniela','Guevara Mejia', N'Calle Esperanza 478', N'43737458', N'998824278', CAST(N'2018-08-14T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
@@ -2266,10 +2270,10 @@ go
 
 /*INSERT HORARIO_SESIONES*/
 
-use [Centro-EADES]
-go
+--use [Centro-EADES]
+--go
 
-Select * From Tb_Horario_Sesiones
+--Select * From Tb_Horario_Sesiones
 
 Set Identity_Insert [dbo].[Tb_Horario_Sesiones] On
 INSERT [Tb_Horario_Sesiones] ([Cod_Horario_Ses],[Cod_Pro],[Descrip_dia],[Est_Hor_Ses]) VALUES ( 1, N'P01' , N'Martes , Jueves', 1)
@@ -2298,67 +2302,63 @@ go
 
 /*INSERT PACIENTE*/
 
-Select * From Tb_Paciente
-INSERT [Tb_Paciente] VALUES (N'P001',N'A002', N'140102' ,'Sofi','Abigail', N'Calle Muerte 210', N'77664458', N'982124887', CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P002',N'A002', N'140102' ,'Sofia','Abal Guevara', N'Calle Esperanza 478', N'77664458', N'982124887', CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P003',N'A003', N'140103' ,'Lu','Ramos Icht', N'Jr. Libertad 156', N'78291458', N'983124887', CAST(N'2018-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
---Agregado 13/10/22
-INSERT [Tb_Paciente] VALUES (N'P004',N'A004', N'250103' ,'Maria','Serpa Heredia', N'Jr. Esperanza 234', N'77291458', N'987724887', CAST(N'2018-08-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P005',N'A005', N'250106' ,'Medalia','Guevara Linch', N'Jr. Inclan 198', N'70291458', N'999124887', CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 0)
-INSERT [Tb_Paciente] VALUES (N'P006',N'A006', N'220213' ,'Roxana','Aquino Flores', N'Jr. Pando 892', N'78221458', N'900124887', CAST(N'2018-10-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
-INSERT [Tb_Paciente] VALUES (N'P007',N'A007', N'211004' ,'Daniela','Avila Castro', N'Calle. Santa Maria 262', N'68291458', N'980024887', CAST(N'2018-11-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P008',N'A008', N'210503' ,'Antonia','Vespucio Celis', N'Calle. Aldabas 321', N'58291458', N'983123887', CAST(N'2018-12-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P009',N'A009', N'210205' ,'Luisa','Larrea Riquelme', N'Calle. Carabaya 196', N'76291458', N'983188887', CAST(N'2019-01-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P010',N'A010', N'200806' ,'Jose','Espert Milei', N'Av. Bodegones 1736', N'78294458', N'989124887', CAST(N'2019-02-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
-INSERT [Tb_Paciente] VALUES (N'P011',N'A011', N'200701' ,'Jedy','Vilcatoma Mejia', N'Av. Concepcion 872', N'76691458', N'988124887', CAST(N'2019-03-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P012',N'A012', N'200504' ,'Silvia','Xeno Zoldiek', N'Av. Cueva 726', N'78293358', N'987124887', CAST(N'2019-04-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P013',N'A013', N'200303' ,'Ruben','Castro De la Cruz', N'Av. Sucre 1256', N'78221458', N'986124887', CAST(N'2019-05-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P014',N'A014', N'200204' ,'Prudencio','Ochoa Paredes', N'Av. La Marina 1156', N'44291458', N'985124887', CAST(N'2019-06-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
-INSERT [Tb_Paciente] VALUES (N'P015',N'A015', N'200103' ,'Bertha','Valerio Ayala', N'Av. Argentina 2391', N'66291458', N'984124887', CAST(N'2019-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P016',N'A016', N'180108' ,'Irina','Costacurta Maldini', N'Av. Colonial 2821', N'78222458', N'903124887', CAST(N'2019-08-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P017',N'A017', N'160202' ,'Pedro','Aquino Ureta', N'Av. Alfonso Ugarte 1827', N'78291919', N'913124887', CAST(N'2019-09-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P018',N'A020', N'150406' ,'Moises','Guevara Hinostrosa', N'Av. Garcia Naranjo 1256', N'78123458', N'923124887', CAST(N'2019-10-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
-INSERT [Tb_Paciente] VALUES (N'P019',N'A021', N'150305' ,'Ana','Rios Dias', N'Av. Mariano Carranza 2156', N'78244458', N'933124887', CAST(N'2019-11-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Paciente] VALUES (N'P020',N'A022', N'150301' ,'Kirk','Flores Acosta', N'Av. Morales Duarez 3156', N'81791458', N'943124887', CAST(N'2019-12-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+--Select * From Tb_Paciente
+INSERT [Tb_Paciente] VALUES (N'P001',N'A002', N'140102' ,'Sofi','Abigail', N'Calle Muerte 210', N'77664458', N'982124887', N'F' , CAST(N'1990-08-16T00:00:00.000' AS DateTime) , NULL ,  CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P002',N'A002', N'140102' ,'Sofia','Abal Guevara', N'Calle Esperanza 478', N'77664458', N'982124887', N'F' , CAST(N'1980-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2018-08-16T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P003',N'A003', N'140103' ,'Lu','Ramos Icht', N'Jr. Libertad 156', N'78291458', N'983124887', N'F' , CAST(N'1991-08-16T00:00:00.000' AS DateTime) , NULL ,  CAST(N'2018-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P004',N'A004', N'250103' ,'Maria','Serpa Heredia', N'Jr. Esperanza 234', N'77291458', N'987724887', N'F' , CAST(N'1992-08-16T00:00:00.000' AS DateTime) , NULL ,  CAST(N'2018-08-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P005',N'A005', N'250106' ,'Medalia','Guevara Linch', N'Jr. Inclan 198', N'70291458', N'999124887', N'F' , CAST(N'1993-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P006',N'A006', N'220213' ,'Roxana','Aquino Flores', N'Jr. Pando 892', N'78221458', N'900124887', N'F' , CAST(N'1994-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2018-10-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P007',N'A007', N'211004' ,'Daniela','Avila Castro', N'Calle. Santa Maria 262', N'68291458', N'980024887', N'F' , CAST(N'1995-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2018-11-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P008',N'A008', N'210503' ,'Antonia','Vespucio Celis', N'Calle. Aldabas 321', N'58291458', N'983123887', N'F' , CAST(N'1996-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2018-12-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P009',N'A009', N'210205' ,'Luisa','Larrea Riquelme', N'Calle. Carabaya 196', N'76291458', N'983188887', N'F' , CAST(N'1997-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-01-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P010',N'A010', N'200806' ,'Jose','Espert Milei', N'Av. Bodegones 1736', N'78294458', N'989124887', N'M' , CAST(N'1970-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-02-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P011',N'A011', N'200701' ,'Jedy','Vilcatoma Mejia', N'Av. Concepcion 872', N'76691458', N'988124887', N'F' , CAST(N'1981-08-16T00:00:00.000' AS DateTime) , NULL ,CAST(N'2019-03-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P012',N'A012', N'200504' ,'Silvia','Xeno Zoldiek', N'Av. Cueva 726', N'78293358', N'987124887', N'F' , CAST(N'1982-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-04-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P013',N'A013', N'200303' ,'Ruben','Castro De la Cruz', N'Av. Sucre 1256', N'78221458', N'986124887', N'M' , CAST(N'1983-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-05-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P014',N'A014', N'200204' ,'Prudencio','Ochoa Paredes', N'Av. La Marina 1156', N'44291458', N'985124887',  N'M' , CAST(N'1984-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-06-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P015',N'A015', N'200103' ,'Bertha','Valerio Ayala', N'Av. Argentina 2391', N'66291458', N'984124887',  N'F' , CAST(N'1985-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-07-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P016',N'A016', N'180108' ,'Irina','Costacurta Maldini', N'Av. Colonial 2821', N'78222458', N'903124887', N'F' , CAST(N'1986-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-08-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P017',N'A017', N'160202' ,'Pedro','Aquino Ureta', N'Av. Alfonso Ugarte 1827', N'78291919', N'913124887', N'M' , CAST(N'1987-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-09-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P018',N'A020', N'150406' ,'Moises','Guevara Hinostrosa', N'Av. Garcia Naranjo 1256', N'78123458', N'923124887', N'M' , CAST(N'1988-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-10-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 0)
+INSERT [Tb_Paciente] VALUES (N'P019',N'A021', N'150305' ,'Ana','Rios Dias', N'Av. Mariano Carranza 2156', N'78244458', N'933124887', N'F' , CAST(N'1991-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-11-19T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
+INSERT [Tb_Paciente] VALUES (N'P020',N'A022', N'150301' ,'Kirk','Flores Acosta', N'Av. Morales Duarez 3156', N'81791458', N'943124887', N'M' , CAST(N'1992-08-16T00:00:00.000' AS DateTime) , NULL , CAST(N'2019-12-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
 go
-
 
 /*INSERT DETALLE_SESIONES*/
 
-select * from Tb_Paciente
-go
+--select * from Tb_Paciente
+--go
 
-Select * From Tb_Detalle_Sesiones
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P001', 1, N'9:00 am' , N'11:00 am', CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P002', 2, N'8:00 am' , N'10:00 am', CAST(N'2018-08-20T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P003', 3, N'4:00 pm' , N'6:00 pm', CAST(N'2018-08-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
---Agregado 13/10/22
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P004', 4, N'7:00 pm' , N'10:00 pm', CAST(N'2018-07-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P005', 5, N'9:00 am' , N'11:00 am', CAST(N'2018-06-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P006', 6, N'8:00 am' , N'10:00 am', CAST(N'2018-05-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P007', 7, N'4:00 pm' , N'6:00 pm', CAST(N'2018-04-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P008', 8, N'7:00 pm' , N'10:00 pm', CAST(N'2018-03-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P009', 9, N'9:00 am' , N'11:00 am', CAST(N'2018-02-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P010', 10, N'8:00 am' , N'10:00 am', CAST(N'2018-01-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P011', 11, N'4:00 pm' , N'6:00 pm', CAST(N'2019-01-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P012', 12, N'7:00 pm' , N'10:00 pm', CAST(N'2019-02-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P013', 13, N'9:00 am' , N'11:00 am', CAST(N'2019-03-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P014', 14, N'8:00 am' , N'10:00 am', CAST(N'2019-04-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P015', 15, N'4:00 pm' , N'6:00 pm', CAST(N'2019-05-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P016', 16, N'7:00 pm' , N'10:00 pm', CAST(N'2019-06-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P017', 17, N'9:00 am' , N'11:00 am', CAST(N'2019-07-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P018', 18, N'8:00 am' , N'10:00 am', CAST(N'2019-08-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P019', 19, N'4:00 pm' , N'6:00 pm', CAST(N'2019-09-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1)
-INSERT [Tb_Detalle_Sesiones] VALUES (N'P020', 20, N'7:00 pm' , N'10:00 pm', CAST(N'2019-10-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1)
-
+--Select * From Tb_Detalle_Sesiones
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P001', 1, N'9:00 am' , N'11:00 am', CAST(N'2018-09-19T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N'Se abría cada conversación pidiéndole al paciente que describiera como fue su día , al terminar el relato se implantaba la técnica específica del trabajo a desarrollar.')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P002', 2, N'8:00 am' , N'10:00 am', CAST(N'2018-08-20T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N'Se introdujo, guías autovalorativas, y autoreportes, que esbozaban la proyección y análisis de las situaciones y acontecimientos que inciden en ellos para el desencadenamiento de los estados emocionales.')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P003', 3, N'4:00 pm' , N'6:00 pm', CAST(N'2018-08-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1 , N'Al terminar con cada autorregistro y guías autovalorativas, se trabajara en la definición y aclaración de cada unos de los aspectos valorados por el paciente. Se finalizaba, con dicho trabajo.')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P004', 4, N'7:00 pm' , N'10:00 pm', CAST(N'2018-07-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N'Se ejecuto el análisis en concreto del trabajo realizado la sesion anteriior. En búsqueda del cambio de pensamiento e impulsar a la resolución del problema de manera adaptativa.' )
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P005', 5, N'9:00 am' , N'11:00 am', CAST(N'2018-06-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1 , N'El cierre se hará con un análisis de los experimentado y alcanzado con la técnica')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P006', 6, N'8:00 am' , N'10:00 am', CAST(N'2018-05-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N' Dudas en la orientación sexual + timidez (47 sesiones')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P007', 7, N'4:00 pm' , N'6:00 pm', CAST(N'2018-04-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1 , N'Trastorno de ansiedad de agorafóbia con ataques de pánico (continúa con terapia')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P008', 8, N'7:00 pm' , N'10:00 pm', CAST(N'2018-03-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N'Miedo a hablar en público. (continúa con terapia) ')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P009', 9, N'9:00 am' , N'11:00 am', CAST(N'2018-02-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N' Fobia social + vaginismo (continúa con terapia) ')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P010', 10, N'8:00 am' , N'10:00 am', CAST(N'2018-01-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N' Problemas de pareja. (29 sesiones)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P011', 11, N'4:00 pm' , N'6:00 pm', CAST(N'2019-01-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1, N'Trastorno obsesivo-compulsivo + depresión. (continúa con terapia)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P012', 12, N'7:00 pm' , N'10:00 pm', CAST(N'2019-02-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1, N'Problemas de pareja manifestados a través de vaginismo y manca de deseo. (53 sesiones)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P013', 13, N'9:00 am' , N'11:00 am', CAST(N'2019-03-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1, N'Trastorno del estado de ánimo secundario por acoso laboral (26 sesiones)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P014', 14, N'8:00 am' , N'10:00 am', CAST(N'2019-04-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1, N'Anorgasmia secundaria por vaginismo (38 sesiones)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P015', 15, N'4:00 pm' , N'6:00 pm', CAST(N'2019-05-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1 , N'Dudas de pareja con infidelidad propia (28 sesiones)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P016', 16, N'7:00 pm' , N'10:00 pm', CAST(N'2019-06-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1, N' Insomnio grave')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P017', 17, N'9:00 am' , N'11:00 am', CAST(N'2019-07-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1 , N'Trastorno obsesivo-compulsivo + depresión. (continúa con terapia)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P018', 18, N'8:00 am' , N'10:00 am', CAST(N'2019-08-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1 , N'Trastorno obsesivo-compulsivo + depresión. (continúa con terapia)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P019', 19, N'4:00 pm' , N'6:00 pm', CAST(N'2019-09-21T00:00:00.000' AS DateTime), N'Paola',NULL, NULL, 1 , N'Trastorno obsesivo-compulsivo + depresión. (continúa con terapia)')
+INSERT [Tb_Detalle_Sesiones] VALUES (N'P020', 20, N'7:00 pm' , N'10:00 pm', CAST(N'2019-10-21T00:00:00.000' AS DateTime), N'Ximena Diaz',NULL, NULL, 1, N' Insomnio grave')
 go
 
 /*INSERT RESERVACION_SESION*/
 
-use [Centro-EADES]
-go
+--use [Centro-EADES]
+--go
 
-Select * From Tb_Reservacion_Sesion
+--Select * From Tb_Reservacion_Sesion
 INSERT [Tb_Reservacion_Sesion] VALUES (N'A001', 1, CAST(N'2018-09-19T00:00:00.000' AS DateTime),1, CAST(N'2018-09-18T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
 INSERT [Tb_Reservacion_Sesion] VALUES (N'A002', 2, CAST(N'2018-08-20T00:00:00.000' AS DateTime),1, CAST(N'2018-08-19T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
 INSERT [Tb_Reservacion_Sesion] VALUES (N'A003', 3, CAST(N'2018-08-21T00:00:00.000' AS DateTime),1, CAST(N'2018-08-20T00:00:00.000' AS DateTime), NULL, NULL, N'Ximena Diaz')
@@ -2422,8 +2422,8 @@ GO
 
 /* usp_InsertarProfesional */
 
-Drop procedure [dbo].[usp_InsertarProfesional]
-go
+--Drop procedure [dbo].[usp_InsertarProfesional]
+--go
 
 Create Procedure [dbo].[usp_InsertarProfesional]
 @vId_Espec int,
@@ -2444,15 +2444,14 @@ else
 		set @vcod=(Select 'P'+Right(Max(Right(Cod_Pro,2)+101),2)
 	From Tb_Profesional)
 --Insertamos un nuevo usuario
-
 Insert into Tb_Profesional values (@vcod , @vId_Espec , @vNom , @vApe ,@vSuel, GETDATE(),@vDni,@vEmail,GETDATE(),@vUsu_Registro,null,null,@vEst )
 GO
 
 --EXEC [usp_InsertarProfesional]  3,'Rodrigo','Palacio',2800,'40736245','rodrigoelcrack@hotmail.com','Paola Gomes',1 
 --go
 
-Select * From Tb_Profesional 
-go
+--Select * From Tb_Profesional 
+--go
 
 /****************************************************************************/
 /*************   ESPECIALIADAD         *****************************/
@@ -2526,6 +2525,9 @@ CREATE PROCEDURE [dbo].[usp_InsertarPaciente]
 @vDir varchar(50),
 @vDni char(8),
 @vTel varchar(10),
+@vSex varchar(1),
+@vFech_nac smalldatetime,
+@vFoto image,
 @vUsu_Registro varchar(20),
 @vEst int
 As
@@ -2540,7 +2542,7 @@ else
 Set @vcod=(Select 'P' + right(max(substring(Cod_pac,2,3)+1001),3)
 		from Tb_Paciente)
 Insert into Tb_Paciente values
-(@vcod,@vCod_apo,@vId_Ubigeo,@vNom,@vApe,@vDir,@vDni,@vTel,GETDATE(),@vUsu_Registro,null,null,@vEst)
+(@vcod,@vCod_apo,@vId_Ubigeo,@vNom,@vApe,@vDir,@vDni,@vTel,@vSex,@vFech_nac,@vFoto,GETDATE(),@vUsu_Registro,null,null,@vEst)
 go
 
 
@@ -2664,7 +2666,7 @@ Create Procedure [dbo].[usp_ActualizarApoderado]
 @vEst int
 As
 Update Tb_Apoderado set Id_Ubigeo=@vId_Ubigeo,Nom_apo=@vNom,Ape_apo=@vApe,
-Dir_apo=@vDir,Dni_apo=@vDni,Tel_pac=@vTel,Fech_Ult_Mod=getdate(),
+Dir_apo=@vDir,Dni_apo=@vDni,Tel_apo=@vTel,Fech_Ult_Mod=getdate(),
 Usu_Ult_Mod=@vUsu_Ult_Mod,Est_apo=@vEst
 where Cod_apo=@vcod
 Go
@@ -2691,11 +2693,14 @@ Create Procedure [dbo].[usp_ActualizarPaciente]
 @vDir varchar(50),
 @vDni char(8),
 @vTel varchar(10),
+@vSexo varchar(1),
+@vFech_nac smalldatetime,
+@vFoto image,
 @vUsu_Ult_Mod varchar(20),
 @vEst int
 As
 Update Tb_Paciente set Cod_apo=@vCod_apo, Id_Ubigeo=@vId_Ubigeo,Nom_pac=@vNom,Ape_pac=@vApe,
-Dir_pac=@vDir,Dni_pac=@vDni,Tel_pac=@vTel,Fech_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod,Est_pac=@vEst
+Dir_pac=@vDir,Dni_pac=@vDni,Tel_pac=@vTel,Sexo=@vSexo,Fec_nac=@vFech_nac,Foto_pac=@vFoto,Fech_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod,Est_pac=@vEst
 where Cod_pac=@vcod
 Go
 
@@ -2795,11 +2800,12 @@ CREATE PROCEDURE [dbo].[usp_InsertarDetalleSesiones]
 @vHor_ini varchar(10),
 @vHor_fin varchar(10),
 @vUsu_Reg varchar(20),
-@vEst int
+@vEst int,
+@vDescrip varchar(400)
 as
 --Insertamos un nuevo detalle de sesion
 Insert into Tb_Detalle_Sesiones values 
-(@vcod_pac , @vcod_Hor_Ses, @vHor_ini,@vHor_fin,getdate(),@vUsu_Reg,null,null,@vEst)
+(@vcod_pac , @vcod_Hor_Ses, @vHor_ini,@vHor_fin,getdate(),@vUsu_Reg,null,null,@vEst,@vDescrip)
 GO
 
 
@@ -3054,7 +3060,7 @@ Create View [dbo].[vw_VistaApoderado]
 As
 Select 
 A.Cod_apo,U.Id_Ubigeo,U.Departamento,U.Provincia,U.Distrito,A.Nom_apo,A.Ape_apo,A.Dir_apo,
-A.Dni_apo,IsNull(A.Tel_pac,'-----') as Tel_apo,A.Fec_reg,A.Usu_Registro,A.Fech_Ult_Mod,A.Usu_Ult_Mod,A.Est_apo,
+A.Dni_apo,IsNull(A.Tel_apo,'-----') as Tel_apo,A.Fec_reg,A.Usu_Registro,A.Fech_Ult_Mod,A.Usu_Ult_Mod,A.Est_apo,
 Case A.Est_apo
 	when 0 then 'Inactivo'
 	when 1 then 'Activo'
@@ -3070,7 +3076,12 @@ Create View [dbo].[vw_VistaPaciente]
 As
 Select 
 P.Cod_pac,P.Cod_apo,U.Id_Ubigeo,U.Departamento,U.Provincia,U.Distrito,P.Nom_pac,P.Ape_pac,P.Dir_pac,
-P.Dni_pac,IsNull(P.Tel_pac,'-----') as Tel_pac,P.Fec_reg,P.Usu_Registro,P.Fech_Ult_Mod,P.Usu_Ult_Mod,P.Est_pac,
+P.Dni_pac,IsNull(P.Tel_pac,'-----') as Tel_pac,P.Sexo,
+Case P.Sexo
+	when 'F' then 'Femenino'
+	when 'M' then 'Masculino'
+End as Sexo_Pac,
+P.Fec_nac,P.Foto_pac,P.Fec_reg,P.Usu_Registro,P.Fech_Ult_Mod,P.Usu_Ult_Mod,P.Est_pac,
 Case P.Est_pac
 	when 0 then 'Inactivo'
 	when 1 then 'Activo'
@@ -3106,7 +3117,7 @@ D.Fec_reg As Fecha_Asignación,D.Hora_Ini As Hora_Inicio,D.Hora_Fin,D.Est_Ses_As
 Case D.Est_Ses_Asig
 	when 0 then 'Sesion Cancelada'
 	when 1 then 'Sesion Asignada'
-End as Estado_Sesion
+End as Estado_Sesion,D.Descrip_Sesion
 From Tb_Paciente P inner join Tb_Detalle_Sesiones D on P.Cod_pac=D.Cod_pac 
 go
 
@@ -3117,7 +3128,7 @@ go
 Create View [dbo].[vw_VistaEstadoReservacion]
 As
 Select 
-A.Cod_apo,R.Cod_Horario_Ses,A.Nom_apo,A.Ape_apo,A.Dni_apo,IsNull(A.Tel_pac,'-----') As Tel_Apo,
+A.Cod_apo,R.Cod_Horario_Ses,A.Nom_apo,A.Ape_apo,A.Dni_apo,IsNull(A.Tel_apo,'-----') As Tel_Apo,
 R.Fecha_Reserv As Fecha_Reservación,R.Est_Reserv,
 Case R.Est_Reserv
 	when 0 then 'Reservación Sin Confirmar'
@@ -3189,16 +3200,19 @@ Go
 /*************   usp_ConsultarPaciente  *****************************/
 /*******************************************************/
 
+
+
 Create Procedure [dbo].[usp_ConsultarPaciente]
 @vCod_pac varchar(4)
 As
-Select Nom_pac,Ape_pac,Dir_pac,Departamento,Provincia,Distrito,Tel_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
+Select Nom_pac,Ape_pac,Dir_pac,Departamento,Provincia,Distrito,Tel_pac,Sexo,Sexo_Pac,Fec_nac,Foto_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
 From [dbo].[vw_VistaPaciente] where Cod_pac = @vCod_pac
 Go
 
 /****************************************************************************/
 /*************   [usp_ConsultarHorarioSesiones  *****************************/
 /*******************************************************/
+
 
 Create Procedure [dbo].[usp_ConsultarHorarioSesiones]
 @vCod_hor_ses int
@@ -3214,7 +3228,7 @@ Go
 Create Procedure [dbo].[usp_ConsultarEstadoDetalleSesiones]
 @vCod_pac varchar(4)
 As
-Select Cod_Horario_Ses,Nom_pac,Ape_pac,Dni_pac,Tel_Pac,Fecha_Asignación,Hora_Inicio,Hora_Fin,Est_Ses_Asig,Estado_Sesion
+Select Cod_Horario_Ses,Nom_pac,Ape_pac,Dni_pac,Tel_Pac,Fecha_Asignación,Hora_Inicio,Hora_Fin,Est_Ses_Asig,Estado_Sesion,Descrip_Sesion
 From [dbo].[vw_VistaEstadoSesionPaciente] where Est_Ses_Asig=1 and Cod_pac = @vCod_pac
 Go
 
@@ -3353,6 +3367,10 @@ Select [Cod_pac]
       ,[Dir_pac]
       ,[Dni_pac]
       ,[Tel_pac]
+	  ,[Sexo]
+	  ,[Sexo_Pac]
+	  ,[Fec_nac]
+	  ,[Foto_pac]
       ,[Fec_reg]
       ,[Usu_Registro]
       ,[Fech_Ult_Mod]
@@ -3403,6 +3421,7 @@ Select [Cod_pac]
       ,[Hora_Fin]
       ,[Est_Ses_Asig]
       ,[Estado_Sesion]
+	  ,[Descrip_Sesion]
 From [dbo].[vw_VistaEstadoSesionPaciente]
 Where Est_Ses_Asig = 1 And Hora_Inicio Like '%'+ @vHor_Ini +'%' And Hora_Fin Like '%' + @vHor_Fin + '%'
 GO
@@ -3427,5 +3446,42 @@ Where Est_Reserv = 1
 Order by Fecha_Reservación desc
 GO
 
-use master
-go
+/****************************************************************************/
+/*************   [usp_Ubigeo_Departamentos]  *****************************/
+/*******************************************************/
+
+CREATE Procedure [dbo].[usp_Ubigeo_Departamentos]
+as
+  SELECT DISTINCT IDDEPA,DEPARTAMENTO 
+  FROM TB_UBIGEO
+  ORDER BY Departamento 
+GO
+
+/****************************************************************************/
+/*************   [usp_Ubigeo_DistritosProvinciaDepartamento]  *****************************/
+/*******************************************************/
+
+CREATE Procedure [dbo].[usp_Ubigeo_DistritosProvinciaDepartamento]
+@IdDepartamento char(2),
+@IdProvincia char(2)
+as
+SELECT  IDDIST,DISTRITO
+FROM TB_UBIGEO
+WHERE IDDEPA=@IdDepartamento AND IDPROV=@IdProvincia
+ORDER BY Distrito 
+GO
+
+/****************************************************************************/
+/*************   [usp_Ubigeo_ProvinciasDepartamento]  *****************************/
+/*******************************************************/
+
+CREATE Procedure [dbo].[usp_Ubigeo_ProvinciasDepartamento]
+@IdDepartamento char(2)
+as
+SELECT  DISTINCT IDPROV,PROVINCIA
+FROM TB_UBIGEO
+WHERE IDDEPA=@IdDepartamento
+ORDER BY Provincia 
+GO
+
+/*hasta el 20-10-2022*/
