@@ -3496,3 +3496,349 @@ From Tb_Usuario where Login_Usuario = @Login_Usuario
 GO
 
 /*hasta el 22-10-2022*/
+
+/*********************************************************************/
+/****************** AUDITORIA APODERADO *****************************/
+/*******************************************************************/
+
+CREATE TABLE [dbo].[Tb_Apoderado_Aud](
+	[Cod_apo] [char](4) NOT NULL,
+	[Id_Ubigeo] [char](6) NOT NULL,
+	[Nom_apo] [varchar](25) NULL,
+	[Ape_apo] [varchar](25) NULL,
+	[Dir_apo] [varchar](50) NULL,
+	[Dni_apo] [char](8) NULL,
+	[Tel_apo] [varchar](10) NULL,
+	[Fec_reg] [datetime] NULL,
+	[Usu_Registro] [varchar](20) NULL,
+	[Fech_Ult_Mod] [datetime] NULL,
+	[Usu_Ult_Mod] [varchar](20) NULL,
+	[Est_apo] [int] NULL,
+	[Accion] [varchar](20) NULL,
+	[FechaAccion] [datetime] NULL,
+ ) 
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Apoderado_Insert]
+ON [dbo].[Tb_Apoderado]
+FOR INSERT 
+AS
+INSERT INTO Tb_Apoderado_Aud 
+SELECT [Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_apo] 
+	  ,[Ape_apo] 
+	  ,[Dir_apo] 
+	  ,[Dni_apo] 
+	  ,[Tel_apo] 
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_apo]
+	  ,'INSERTADO'
+      ,GETDATE()
+  FROM Inserted
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Apoderado_Delete]
+ON [dbo].[Tb_Apoderado]
+FOR Delete 
+AS
+INSERT INTO Tb_Apoderado_Aud 
+SELECT [Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_apo] 
+	  ,[Ape_apo] 
+	  ,[Dir_apo] 
+	  ,[Dni_apo] 
+	  ,[Tel_apo] 
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_apo] 
+	  ,'ELIMINADO'
+      ,GETDATE()
+  FROM Deleted
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Apoderado_Update]
+ON [dbo].[Tb_Apoderado]
+FOR Update 
+AS
+INSERT INTO Tb_Apoderado_Aud 
+SELECT [Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_apo] 
+	  ,[Ape_apo] 
+	  ,[Dir_apo] 
+	  ,[Dni_apo] 
+	  ,[Tel_apo] 
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_apo] 
+	  ,'NUEVA VERSION'
+      ,GETDATE()
+  FROM Inserted
+
+INSERT INTO Tb_Apoderado_Aud 
+SELECT [Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_apo] 
+	  ,[Ape_apo] 
+	  ,[Dir_apo] 
+	  ,[Dni_apo] 
+	  ,[Tel_apo] 
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_apo] 
+	  ,'ANTERIOR VERSION'
+      ,GETDATE()
+  FROM Deleted
+
+GO
+
+/*********************************************************************/
+/****************** AUDITORIA PACIENTE *****************************/
+/*******************************************************************/
+
+
+CREATE TABLE [dbo].[Tb_Paciente_Aud](
+	[Cod_pac] [varchar](4) NOT NULL,
+	[Cod_apo] [char](4) NOT NULL,
+	[Id_Ubigeo] [char](6) NOT NULL,
+	[Nom_pac] [varchar](25) NULL,
+	[Ape_pac] [varchar](25) NULL,
+	[Dir_pac] [varchar](50) NULL,
+	[Dni_pac] [char](8) NULL,
+	[Tel_pac] [varchar](10) NULL,
+	[Sexo] [varchar](1) NULL,
+	[Fec_nac] [datetime] NULL,
+	[Fec_reg] [datetime] NOT NULL,
+	[Usu_Registro] [varchar](20) NULL,
+	[Fech_Ult_Mod] [datetime] NULL,
+	[Usu_Ult_Mod] [varchar](20) NULL,
+	[Est_pac] [int] NULL,
+	[Accion] [varchar](20) NULL,
+	[FechaAccion] [datetime] NULL,
+ ) 
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Paciente_Insert]
+ON [dbo].[Tb_Paciente]
+FOR INSERT 
+AS
+INSERT INTO Tb_Paciente_Aud 
+SELECT [Cod_pac] 
+	  ,[Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_pac] 
+	  ,[Ape_pac] 
+	  ,[Dir_pac] 
+	  ,[Dni_pac] 
+	  ,[Tel_pac] 
+	  ,[Sexo] 
+	  ,[Fec_nac] 
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod]
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pac] 
+	  ,'INSERTADO'
+      ,GETDATE()
+  FROM Inserted
+
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Paciente_Delete]
+ON [dbo].[Tb_Paciente]
+FOR Delete 
+AS
+INSERT INTO Tb_Paciente_Aud 
+SELECT [Cod_pac] 
+	  ,[Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_pac] 
+	  ,[Ape_pac] 
+	  ,[Dir_pac] 
+	  ,[Dni_pac] 
+	  ,[Tel_pac] 
+	  ,[Sexo] 
+	  ,[Fec_nac] 
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod]
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pac] 
+	  ,'ELIMINADO'
+      ,GETDATE()
+  FROM Deleted
+
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Paciente_Update]
+ON [dbo].[Tb_Paciente]
+FOR Update 
+AS
+INSERT INTO Tb_Paciente_Aud 
+SELECT [Cod_pac] 
+	  ,[Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_pac] 
+	  ,[Ape_pac] 
+	  ,[Dir_pac] 
+	  ,[Dni_pac] 
+	  ,[Tel_pac] 
+	  ,[Sexo] 
+	  ,[Fec_nac]  
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod]
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pac] 
+	  ,'NUEVA VERSION'
+      ,GETDATE()
+  FROM Inserted
+
+INSERT INTO Tb_Paciente_Aud 
+SELECT [Cod_pac] 
+	  ,[Cod_apo] 
+	  ,[Id_Ubigeo] 
+	  ,[Nom_pac] 
+	  ,[Ape_pac] 
+	  ,[Dir_pac] 
+	  ,[Dni_pac] 
+	  ,[Tel_pac] 
+	  ,[Sexo] 
+	  ,[Fec_nac]  
+	  ,[Fec_reg] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod]
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pac] 
+	  ,'ANTERIOR VERSION'
+      ,GETDATE()
+  FROM Deleted
+
+GO
+
+/*********************************************************************/
+/****************** AUDITORIA PROFESIONAL *****************************/
+/*******************************************************************/
+
+
+CREATE TABLE [dbo].[Tb_Profesional_Aud](
+	[Cod_Pro] [char](3) NOT NULL,
+	[Id_Espec] [int] NOT NULL,
+	[Nom_pro] [varchar](25) NULL,
+	[Ape_pro] [varchar](25) NULL,
+	[Sue_pro] [money] NULL,
+	[Fech_ing] [datetime] NULL,
+	[Dni_pro] [char](8) NULL,
+	[Email_pro] [varchar](50) NULL,
+	[Fech_Registro] [datetime] NULL,
+	[Usu_Registro] [varchar](20) NULL,
+	[Fech_Ult_Mod] [datetime] NULL,
+	[Usu_Ult_Mod] [varchar](20) NULL,
+	[Est_pro] [int] NULL,
+	[Accion] [varchar](20) NULL,
+	[FechaAccion] [datetime] NULL,
+ ) 
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Profesional_Insert]
+ON [dbo].[Tb_Profesional]
+FOR INSERT 
+AS
+INSERT INTO Tb_Profesional_Aud 
+SELECT [Cod_Pro] 
+	  ,[Id_Espec]
+	  ,[Nom_pro] 
+	  ,[Ape_pro] 
+	  ,[Sue_pro] 
+	  ,[Fech_ing] 
+	  ,[Dni_pro] 
+	  ,[Email_pro] 
+	  ,[Fech_Registro] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pro]
+	  ,'INSERTADO'
+      ,GETDATE()
+  FROM Inserted
+
+GO
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Profesional_Delete]
+ON [dbo].[Tb_Profesional]
+FOR Delete 
+AS
+INSERT INTO Tb_Profesional_Aud 
+SELECT [Cod_Pro] 
+	  ,[Id_Espec]
+	  ,[Nom_pro] 
+	  ,[Ape_pro] 
+	  ,[Sue_pro] 
+	  ,[Fech_ing] 
+	  ,[Dni_pro] 
+	  ,[Email_pro] 
+	  ,[Fech_Registro] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pro]
+	  ,'ELIMINADO'
+      ,GETDATE()
+  FROM Deleted
+GO
+
+
+CREATE or ALTER TRIGGER [dbo].[TR_TB_Profesional_Update]
+ON [dbo].[Tb_Profesional]
+FOR Update 
+AS
+INSERT INTO Tb_Profesional_Aud 
+SELECT [Cod_Pro] 
+	  ,[Id_Espec]
+	  ,[Nom_pro] 
+	  ,[Ape_pro] 
+	  ,[Sue_pro] 
+	  ,[Fech_ing] 
+	  ,[Dni_pro] 
+	  ,[Email_pro] 
+	  ,[Fech_Registro] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pro]
+	  ,'NUEVA VERSION'
+      ,GETDATE()
+  FROM Inserted
+
+INSERT INTO Tb_Profesional_Aud 
+SELECT [Cod_Pro] 
+	  ,[Id_Espec]
+	  ,[Nom_pro] 
+	  ,[Ape_pro] 
+	  ,[Sue_pro] 
+	  ,[Fech_ing] 
+	  ,[Dni_pro] 
+	  ,[Email_pro] 
+	  ,[Fech_Registro] 
+	  ,[Usu_Registro] 
+	  ,[Fech_Ult_Mod] 
+	  ,[Usu_Ult_Mod] 
+	  ,[Est_pro]
+	  ,'ANTERIOR VERSION'
+      ,GETDATE()
+  FROM Deleted
+
+GO
+
+/*hasta el 22-10-2022   23:11pm*/
