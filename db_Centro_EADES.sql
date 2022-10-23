@@ -3484,4 +3484,15 @@ WHERE IDDEPA=@IdDepartamento
 ORDER BY Provincia 
 GO
 
-/*hasta el 20-10-2022*/
+/****************************************************************************/
+/*************   [usp_ConsultarUsuarioLogin]  *****************************/
+/*******************************************************/
+
+Create Procedure [dbo].[usp_ConsultarUsuarioLogin]
+@Login_Usuario varchar(20)
+As
+Select Login_Usuario,Pass_Usuario,Niv_Usuario,Est_Usuario,Fec_Registro,Usu_Registro
+From Tb_Usuario where Login_Usuario = @Login_Usuario
+GO
+
+/*hasta el 22-10-2022*/
