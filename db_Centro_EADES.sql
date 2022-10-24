@@ -2865,8 +2865,11 @@ go
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarProfesional]
-@vcod char(3)
+@vcod char(3),
+@Usuario varchar(20)
 As
+Update Tb_Profesional set Usu_Ult_Mod = @Usuario
+where Cod_Pro=@vcod
 delete from Tb_Profesional where
 Cod_Pro=@vcod
 go
@@ -2902,8 +2905,11 @@ go
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarPaciente]
-@vcod varchar(4)
+@vcod varchar(4),
+@Usuario varchar(20)
 As
+Update Tb_Paciente set Usu_Ult_Mod = @Usuario
+where Cod_pac=@vcod
 delete from Tb_Paciente where
 Cod_pac=@vcod
 go
@@ -2921,8 +2927,11 @@ go
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarApoderado]
-@vcod char(4)
+@vcod char(4),
+@Usuario varchar(20)
 As
+Update Tb_Apoderado set Usu_Ult_Mod = @Usuario
+where Cod_apo=@vcod
 delete from Tb_Apoderado where
 Cod_apo=@vcod
 go
@@ -3194,7 +3203,7 @@ Go
 Create Procedure [dbo].[usp_ConsultarApoderado]
 @vCod_apo char(4)
 As
-Select Cod_apo,Nom_apo,Ape_apo,Dir_apo,Id_Ubigeo,Departamento,Provincia,Distrito,Tel_apo,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_apo,Estado
+Select Cod_apo,Nom_apo,Ape_apo,Dir_apo,Dni_apo,Id_Ubigeo,Departamento,Provincia,Distrito,Tel_apo,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_apo,Estado
 From [dbo].[vw_VistaApoderado] where Cod_apo = @vCod_apo
 Go
 
@@ -3843,4 +3852,4 @@ GO
 
 
 
-/*hasta el 23-10-2022   13:27pm*/
+/*hasta el 23-10-2022   23:13pm*/
