@@ -2616,7 +2616,7 @@ Create Procedure [dbo].[usp_ActualizarProfesional]
 @vEst int
 As
 Update Tb_Profesional set Id_Espec=@vId_Espec,Nom_pro=@vNom,
-Ape_pro=@vApe,Sue_pro=@vSuel,Fech_ing=@vFec,Dni_pro=@vDni,Email_pro=@vDni,
+Ape_pro=@vApe,Sue_pro=@vSuel,Fech_ing=@vFec,Dni_pro=@vDni,Email_pro=@vEmail,
 Fech_Ult_Mod=getdate(),Usu_Ult_Mod=@vUsu_Ult_Mod,Est_pro=@vEst
 where Cod_Pro=@vcod
 go
@@ -2865,8 +2865,11 @@ go
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarProfesional]
-@vcod char(3)
+@vcod char(3),
+@Usuario varchar(20)
 As
+Update Tb_Profesional set Usu_Ult_Mod = @Usuario
+where Cod_Pro=@vcod
 delete from Tb_Profesional where
 Cod_Pro=@vcod
 go
@@ -2902,8 +2905,11 @@ go
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarPaciente]
-@vcod varchar(4)
+@vcod varchar(4),
+@Usuario varchar(20)
 As
+Update Tb_Paciente set Usu_Ult_Mod = @Usuario
+where Cod_pac=@vcod
 delete from Tb_Paciente where
 Cod_pac=@vcod
 go
@@ -2921,8 +2927,11 @@ go
 /*******************************************************/
 
 Create Procedure [dbo].[usp_EliminarApoderado]
-@vcod char(4)
+@vcod char(4),
+@Usuario varchar(20)
 As
+Update Tb_Apoderado set Usu_Ult_Mod = @Usuario
+where Cod_apo=@vcod
 delete from Tb_Apoderado where
 Cod_apo=@vcod
 go
@@ -3194,7 +3203,7 @@ Go
 Create Procedure [dbo].[usp_ConsultarApoderado]
 @vCod_apo char(4)
 As
-Select Cod_apo,Nom_apo,Ape_apo,Dir_apo,Id_Ubigeo,Departamento,Provincia,Distrito,Tel_apo,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_apo,Estado
+Select Cod_apo,Nom_apo,Ape_apo,Dir_apo,Dni_apo,Id_Ubigeo,Departamento,Provincia,Distrito,Tel_apo,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_apo,Estado
 From [dbo].[vw_VistaApoderado] where Cod_apo = @vCod_apo
 Go
 
@@ -3207,7 +3216,7 @@ Go
 Create Procedure [dbo].[usp_ConsultarPaciente]
 @vCod_pac varchar(4)
 As
-Select Nom_pac,Ape_pac,Dir_pac,Departamento,Provincia,Distrito,Tel_pac,Sexo,Sexo_Pac,Fec_nac,Foto_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
+Select Cod_pac,Cod_apo,Nom_pac,Ape_pac,Dir_pac,Id_Ubigeo,Departamento,Provincia,Distrito,Dni_pac,Tel_pac,Sexo,Sexo_Pac,Fec_nac,isnull(Foto_pac,'') as Foto_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
 From [dbo].[vw_VistaPaciente] where Cod_pac = @vCod_pac
 Go
 
@@ -3843,4 +3852,4 @@ GO
 
 
 
-/*hasta el 23-10-2022   13:27pm*/
+/*hasta el 25-10-2022   18:15pm*/
