@@ -3856,7 +3856,6 @@ GO
 
 
 create Procedure [dbo].[usp_ListarUbigeo_Def]
-@vthreeletters char(3)
 As
 Select [Id]
       ,[Id_Ubigeo]
