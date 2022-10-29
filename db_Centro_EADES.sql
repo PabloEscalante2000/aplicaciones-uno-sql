@@ -3853,3 +3853,23 @@ GO
 
 
 /*hasta el 25-10-2022   18:15pm*/
+
+
+create Procedure [dbo].[usp_ListarUbigeo_Def]
+@vthreeletters char(3)
+As
+Select [Id]
+      ,[Id_Ubigeo]
+      ,[IdDepa]
+      ,[IdProv]
+      ,[IdDist]
+      ,[Departamento]
+      ,[Provincia]
+      ,[Distrito]
+      ,[Cod_pro]
+From [dbo].[vw_VistaUbigeo]
+Order by Id desc
+
+/*29/10/2022*/
+
+
