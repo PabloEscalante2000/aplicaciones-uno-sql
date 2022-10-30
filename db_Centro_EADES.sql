@@ -3216,7 +3216,7 @@ Go
 Create Procedure [dbo].[usp_ConsultarPaciente]
 @vCod_pac varchar(4)
 As
-Select Cod_pac,Cod_apo,Nom_pac,Ape_pac,Dir_pac,Id_Ubigeo,Departamento,Provincia,Distrito,Dni_pac,Tel_pac,Sexo,Sexo_Pac,Fec_nac,isnull(Foto_pac,'') as Foto_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
+Select Cod_pac,Cod_apo,Nom_pac,Ape_pac,Dir_pac,Id_Ubigeo,Departamento,Provincia,Distrito,Dni_pac,Tel_pac,Sexo,Sexo_Pac,Fec_nac,Foto_pac,Fec_reg,Usu_Registro,Fech_Ult_Mod,Usu_Ult_Mod,Est_pac,Estado
 From [dbo].[vw_VistaPaciente] where Cod_pac = @vCod_pac
 Go
 
